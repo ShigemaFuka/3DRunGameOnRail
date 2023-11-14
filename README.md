@@ -1,3 +1,3 @@
 # 3DRunGameOnRail
 
-##© Unity Technologies Japan/UCL
+## © Unity Technologies Japan/UCL
