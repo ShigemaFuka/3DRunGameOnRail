@@ -236,7 +236,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _speedX: 2
-  _x: 0
+  _x: 3
+  _isGetAxis: 0
+  _isTransform: 1
 --- !u!54 &258508644
 Rigidbody:
   m_ObjectHideFlags: 0
