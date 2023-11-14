@@ -16,10 +16,12 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("GetAxisで左右移動か")] bool _isGetAxis;
     [SerializeField, Tooltip("Transform.xで左右移動か")] bool _isTransform;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos;
+    int _count;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _count = 0;
     }
 
     void FixedUpdate()
@@ -37,18 +39,23 @@ public class MovePlayer : MonoBehaviour
         else if (_isTransform)
         {
             //右入力
-            if (h > 0)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                _changedPos = new Vector3(_x, gameObject.transform.position.y);
-                //_changedPos.x = _x;
-                gameObject.transform.position = _changedPos;
+                if (_count < 1)
+                    _count++;
             }
-            else if (h < 0)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                _changedPos = new Vector3(-_x, gameObject.transform.position.y);
-                //_changedPos.x = - _x;
-                gameObject.transform.position = _changedPos;
+                if (_count > -1)
+                    _count--;
             }
+            if (_count == 1)
+                _changedPos = new Vector3(3, gameObject.transform.position.y, gameObject.transform.position.z);
+            else if (_count == 0)
+                _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
+            else if (_count == -1)
+                _changedPos = new Vector3(-3, gameObject.transform.position.y, gameObject.transform.position.z);
+            gameObject.transform.position = _changedPos;
         }
     }
 }
