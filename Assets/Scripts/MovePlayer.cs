@@ -9,12 +9,12 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] float _speed = 2;
     [SerializeField] float _speedX = 2;
-    [SerializeField] float _x;
+    [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3;
     Rigidbody _rb;
     [Space]
     [Header("以下のboolのどちらかを真にすると、左右移動可能になる")]
-    [SerializeField, Tooltip("GetAxisで左右移動か")] bool _isGetAxis;
-    [SerializeField, Tooltip("Transform.xで左右移動か")] bool _isTransform;
+    [SerializeField, Tooltip("滑らか")] bool _isGetAxis;
+    [SerializeField, Tooltip("瞬間")] bool _isTransform;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos;
     int _count;
 
@@ -50,11 +50,11 @@ public class MovePlayer : MonoBehaviour
                     _count--;
             }
             if (_count == 1)
-                _changedPos = new Vector3(3, gameObject.transform.position.y, gameObject.transform.position.z);
+                _changedPos = new Vector3(_x, gameObject.transform.position.y, gameObject.transform.position.z);
             else if (_count == 0)
                 _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
             else if (_count == -1)
-                _changedPos = new Vector3(-3, gameObject.transform.position.y, gameObject.transform.position.z);
+                _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
             gameObject.transform.position = _changedPos;
         }
     }
