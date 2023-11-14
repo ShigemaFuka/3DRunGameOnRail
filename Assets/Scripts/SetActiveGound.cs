@@ -2,6 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// 地面の表示・非表示を行う
+/// テストする際にボタン機能で簡易的に実行するため
 /// </summary>
 public class SetActiveGound : MonoBehaviour
 {

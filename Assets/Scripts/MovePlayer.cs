@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class MovePlayer : MonoBehaviour
 {
+    [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove;
     [SerializeField] float _speed = 2;
     [SerializeField] float _speedX = 2;
     [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3;
@@ -26,36 +27,41 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+        if (_isMove) transform.Translate(Vector3.forward * Time.deltaTime * _speed);
     }
 
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
-        if (_isGetAxis)
+        if (_isMove)
         {
-            _rb.velocity = new Vector2(h * _speedX, _rb.velocity.y);
-        }
-        else if (_isTransform)
-        {
-            //右入力
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+
+
+            if (_isGetAxis)
             {
-                if (_count < 1)
-                    _count++;
+                _rb.velocity = new Vector2(h * _speedX, _rb.velocity.y);
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (_isTransform)
             {
-                if (_count > -1)
-                    _count--;
+                //右入力
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    if (_count < 1)
+                        _count++;
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    if (_count > -1)
+                        _count--;
+                }
+                if (_count == 1)
+                    _changedPos = new Vector3(_x, gameObject.transform.position.y, gameObject.transform.position.z);
+                else if (_count == 0)
+                    _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
+                else if (_count == -1)
+                    _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
+                gameObject.transform.position = _changedPos;
             }
-            if (_count == 1)
-                _changedPos = new Vector3(_x, gameObject.transform.position.y, gameObject.transform.position.z);
-            else if (_count == 0)
-                _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
-            else if (_count == -1)
-                _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
-            gameObject.transform.position = _changedPos;
         }
     }
 }
