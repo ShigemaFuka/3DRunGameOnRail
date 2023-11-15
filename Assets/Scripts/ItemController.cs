@@ -3,6 +3,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     [SerializeField, Tooltip("加算するスコア")] int _score = 5;
+    [SerializeField, Tooltip("取得時に鳴らす音")] AudioSource _audioSource = default;
 
     void Start()
     {
@@ -14,7 +15,6 @@ public class ItemController : MonoBehaviour
         
     }
 
-
     /// <summary>
     /// Playerタグのオブジェクトに接触したら、GMのAddScore関数で加算し、自身を非表示にする
     /// </summary>
@@ -24,6 +24,8 @@ public class ItemController : MonoBehaviour
         if (coll.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.AddScore(_score);
+            if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
+            gameObject.SetActive(false);
         }
     }
 }

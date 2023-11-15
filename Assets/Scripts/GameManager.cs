@@ -45,8 +45,22 @@ public class GameManager : MonoBehaviour
         ShowText();
     }
 
+    /// <summary>
+    /// オブジェクトがPlayerに接触したら、この関数を呼んでスコアを減算
+    /// </summary>
+    public void SubtractScore(int value)
+    {
+        Score -= value;
+        ShowText();
+    }
+
     public void ShowText()
     {
         _scoreText.text = Score.ToString("00000");
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("GameOver");
     }
 }
