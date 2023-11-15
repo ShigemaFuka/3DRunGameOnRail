@@ -25,7 +25,8 @@ public class ItemController : MonoBehaviour
         {
             GameManager.Instance.AddScore(_score);
             if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
-            gameObject.SetActive(false);
+            var pos = new Vector3(gameObject.transform.position.x, -1, gameObject.transform.position.z);
+            gameObject.transform.position = pos;
         }
     }
 }
