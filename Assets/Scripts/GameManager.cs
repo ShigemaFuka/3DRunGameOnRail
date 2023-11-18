@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("現在のスコア")] static int _score = 0;
     public int Score { get => _score; set => _score = value; }
     [SerializeField, Tooltip("スコアを表示するテキスト")] Text _scoreText = default;
+    [SerializeField] UnityEvent _onStartEvent = null;
+    [SerializeField] UnityEvent _inGameEvent = null;
+    [SerializeField] UnityEvent _onGameOverEvent = null;
 
     void Awake()
     {
@@ -29,30 +33,35 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Score = 0;
+        _onStartEvent.Invoke();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            _inGameEvent.Invoke();
+        }
 
     }
 
     /// <summary>
     /// オブジェクトがPlayerに接触したら、この関数を呼んでスコアを加算
     /// </summary>
-    public void AddScore(int value)
+    public void ChangeScore(int value)
     {
         Score += value;
         ShowText();
     }
 
-    /// <summary>
-    /// オブジェクトがPlayerに接触したら、この関数を呼んでスコアを減算
-    /// </summary>
-    public void SubtractScore(int value)
-    {
-        Score -= value;
-        ShowText();
-    }
+    ///// <summary>
+    ///// オブジェクトがPlayerに接触したら、この関数を呼んでスコアを減算
+    ///// </summary>
+    //public void SubtractScore(int value)
+    //{
+    //    Score -= value;
+    //    ShowText();
+    //}
 
     public void ShowText()
     {
@@ -61,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        _onGameOverEvent.Invoke();
         Debug.Log("GameOver");
     }
 }
