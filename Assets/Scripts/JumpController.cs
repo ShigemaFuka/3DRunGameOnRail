@@ -32,7 +32,7 @@ public class JumpController : MonoBehaviour
             {
                 if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
                 _animator.SetBool("Jump", true);
-                _movePlayer.ChangeMoveSpeed(_onJumpSpeed); 
+                //_movePlayer.ChangeMoveSpeed(_onJumpSpeed); 
                 _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 _isJump = false;
             }

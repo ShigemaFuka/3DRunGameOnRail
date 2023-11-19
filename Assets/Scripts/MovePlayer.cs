@@ -40,7 +40,7 @@ public class MovePlayer : MonoBehaviour
             if (_isTransform)
                 Move();
         }
-        Debug.Log("Speed : " + Speed);
+        //Debug.Log("Speed : " + Speed);
     }
 
     /// <summary>
