@@ -19,11 +19,13 @@ public class MovePlayer : MonoBehaviour
     int _count;
     [SerializeField, Tooltip("¶‰EˆÚ“®‚Ì’x‰„ŠÔ")] float _wfs = 0.5f;
     [SerializeField, Tooltip("¶‰EˆÚ“®")] bool _isTransform;
+    public bool _isResetSpeed;
 
     void Start()
     {
         _count = 0;
         Speed = _defaultSpeed;
+        _isResetSpeed = false;
     }
 
     void FixedUpdate()
@@ -38,6 +40,7 @@ public class MovePlayer : MonoBehaviour
             if (_isTransform)
                 Move();
         }
+        Debug.Log("Speed : " + Speed);
     }
 
     /// <summary>
@@ -86,6 +89,7 @@ public class MovePlayer : MonoBehaviour
     public void ResetSpeed()
     {
         Speed = _defaultSpeed;
+        _isResetSpeed = true;
     }
 
     /// <summary>

@@ -20,7 +20,7 @@ public class PlayerHp : MonoBehaviour
     {
         if (_nowHp < 0)
         {
-            GameManager.Instance.GameOver();
+            GM.Instance.GameOver();
         }
     }
 
@@ -30,7 +30,20 @@ public class PlayerHp : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Gimmick"))
+        {
+            ChangeNowHp(-1);
+            Debug.Log("gimmick");
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
     }
 
     void ChangeNowHp(int value)

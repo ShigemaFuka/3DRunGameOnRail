@@ -23,7 +23,7 @@ public class ItemController : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.ChangeScore(_score);
+            GM.Instance.ChangeScore(_score);
             if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
             var pos = new Vector3(gameObject.transform.position.x, -1, gameObject.transform.position.z);
             gameObject.transform.position = pos;

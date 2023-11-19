@@ -31,12 +31,10 @@ public class JumpController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
-                //_animator.SetTrigger("Jump");
                 _animator.SetBool("Jump", true);
-                _movePlayer.ChangeMoveSpeed(_onJumpSpeed);
+                _movePlayer.ChangeMoveSpeed(_onJumpSpeed); 
                 _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 _isJump = false;
-                //_animator.SetBool("Jump", false);
             }
         }
     }
@@ -54,6 +52,9 @@ public class JumpController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アニメーションイベントで使用する
+    /// </summary>
     void ToFalseJumpAnim()
     {
         _animator.SetBool("Jump", false);
