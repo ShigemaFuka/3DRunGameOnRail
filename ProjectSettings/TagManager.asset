@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Gimmick
   - Item
+  - Fire
+  - Health
   layers:
   - Default
   - TransparentFX

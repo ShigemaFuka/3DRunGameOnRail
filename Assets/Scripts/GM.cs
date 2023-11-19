@@ -10,7 +10,7 @@ public class GM : MonoBehaviour
     [SerializeField, Tooltip("スコアを表示するテキスト")] Text _scoreText = default;
     [SerializeField] UnityEvent _onStartEvent = null;
     [SerializeField] UnityEvent _inGameEvent = null;
-    [SerializeField] UnityEvent _onGameOverEvent = null;
+    [SerializeField] UnityEvent _onResultEvent = null;
 
     void Awake()
     {
@@ -68,9 +68,9 @@ public class GM : MonoBehaviour
         _scoreText.text = Score.ToString("00000");
     }
 
-    public void GameOver()
+    public void Result()
     {
-        _onGameOverEvent.Invoke();
-        Debug.Log("GameOver");
+        _onResultEvent.Invoke();
+        Debug.Log("Result");
     }
 }

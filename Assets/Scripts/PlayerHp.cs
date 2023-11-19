@@ -20,7 +20,7 @@ public class PlayerHp : MonoBehaviour
     {
         if (_nowHp < 0)
         {
-            GM.Instance.GameOver();
+            GM.Instance.Result();
         }
     }
 
@@ -35,9 +35,10 @@ public class PlayerHp : MonoBehaviour
             ChangeNowHp(-1);
             Debug.Log("gimmick");
         }
-        else if (other.gameObject.CompareTag("Item"))
+        else if (other.gameObject.CompareTag("Health"))
         {
-
+            ChangeNowHp(1);
+            Debug.Log("Health");
         }
     }
 
