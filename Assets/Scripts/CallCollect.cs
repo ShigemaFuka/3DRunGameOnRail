@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class CallCollect : MonoBehaviour
 {
-    [SerializeField] Vector3 _back;
+    [SerializeField] Vector3 _direction;
     [SerializeField] ObjectPoolGround _objectPoolGround;
     [SerializeField] float _length = 7;
     [Tooltip("äiî[Ç≥ÇÍÇΩêî")] int _count;
@@ -17,12 +17,12 @@ public class CallCollect : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(gameObject.transform.position, _back * _length);
+        Ray ray = new Ray(gameObject.transform.position, _direction * _length);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            Debug.DrawRay(gameObject.transform.position, _back * _length, Color.red);
+            Debug.DrawRay(gameObject.transform.position, _direction * _length, Color.red);
             GameObject hitObj = hit.collider.gameObject;
-            if (hitObj.activeSelf == true)
+            if (hitObj.activeSelf == true && hitObj.CompareTag("Ground"))
             {
                 _objectPoolGround.Collect(hitObj);
                 _count++;
@@ -33,6 +33,6 @@ public class CallCollect : MonoBehaviour
                 //Debug.Log("ï\é¶");
             }
         }
-        Debug.DrawRay(gameObject.transform.position, _back * _length, Color.red);
+        Debug.DrawRay(gameObject.transform.position, _direction * _length, Color.red);
     }
 }

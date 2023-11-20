@@ -20,12 +20,15 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("左右移動の遅延時間")] float _wfs = 0.5f;
     [SerializeField, Tooltip("左右移動")] bool _isTransform;
     public bool _isResetSpeed;
+    [SerializeField, Tooltip("速度を戻すまでの時間の経過")] public float _timer;
+    [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 5f;
 
     void Start()
     {
         _count = 0;
         Speed = _defaultSpeed;
         _isResetSpeed = false;
+        _timer = 0;
     }
 
     void FixedUpdate()
@@ -40,7 +43,16 @@ public class MovePlayer : MonoBehaviour
             if (_isTransform)
                 Move();
         }
-        //Debug.Log("Speed : " + Speed);
+        //一定時間経過したら、速度を戻す
+        if (Speed != _defaultSpeed)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _resetTime)
+            {
+                Speed = _defaultSpeed;
+                _timer = 0;
+            }
+        }
     }
 
     /// <summary>
@@ -81,7 +93,7 @@ public class MovePlayer : MonoBehaviour
     public void ChangeMoveSpeed(float addSpeed)
     {
         Speed *= addSpeed;
-    }
+    }//消すかも11.20
 
     /// <summary>
     /// アニメーションのイベントトリガーで使う
@@ -90,7 +102,7 @@ public class MovePlayer : MonoBehaviour
     {
         Speed = _defaultSpeed;
         _isResetSpeed = true;
-    }
+    }//消すかも11.20
 
     /// <summary>
     /// 高速反復横跳びを防ぐ

@@ -24,32 +24,14 @@ public class PlayerHp : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ギミックやアイテムのタグを分けて判定
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Gimmick"))
-        {
-            ChangeNowHp(-1);
-            Debug.Log("gimmick");
-        }
-        else if (other.gameObject.CompareTag("Health"))
-        {
-            ChangeNowHp(1);
-            Debug.Log("Health");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-
-    }
-
-    void ChangeNowHp(int value)
+    public void ChangeNowHp(int value)
     {
         _nowHp += value;
         _hpText.text = _nowHp.ToString("00");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
