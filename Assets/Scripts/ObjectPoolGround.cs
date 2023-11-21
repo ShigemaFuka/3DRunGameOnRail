@@ -19,6 +19,7 @@ public class ObjectPoolGround : MonoBehaviour
     [Tooltip("プレハブの表示位置")] Vector3 _pos;
     [SerializeField, Tooltip("表示間隔（プレハブのZ軸方向の長さに依存）")] float _addZLength = 20;
     [SerializeField, Tooltip("プレハブの表示位置のZの値")] float _setZLength = 0; // ０スタート
+    [SerializeField, Tooltip("初期生成時")] int _initialCreateNum = 10;
 
 
     /// <summary>
@@ -39,7 +40,7 @@ public class ObjectPoolGround : MonoBehaviour
             GroundPrefabQueue.Enqueue(go);
             go.SetActive(false);
         }
-        for (int i = 0; i < _maxCount; i++)
+        for (int i = 0; i < _initialCreateNum; i++)
         {
             Launch();
         }

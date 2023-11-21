@@ -30,6 +30,7 @@ public class CallCollect : MonoBehaviour
             if (_count >= 3)
             {
                 _objectPoolGround.Launch();
+                _count--;
                 //Debug.Log("•\Ž¦");
             }
         }

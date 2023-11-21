@@ -18,7 +18,7 @@ public class PlayerHp : MonoBehaviour
 
     void Update()
     {
-        if (_nowHp < 0)
+        if (_nowHp <= 0)
         {
             GM.Instance.Result();
         }

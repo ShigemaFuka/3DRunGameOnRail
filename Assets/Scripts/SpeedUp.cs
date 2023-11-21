@@ -10,7 +10,7 @@ public class SpeedUp : ItemBase
         {
             var movePlayer = coll.GetComponent<MovePlayer>();
             movePlayer._timer = 0; //最後に取得したタイミングから、カウント開始
-            movePlayer.Speed = ToSpeedUp(movePlayer.Speed);
+            if(movePlayer.Speed <= 20) movePlayer.Speed = ToSpeedUp(movePlayer.Speed);
             PlayEffectAndSE();
             gameObject.SetActive(false);
         }
