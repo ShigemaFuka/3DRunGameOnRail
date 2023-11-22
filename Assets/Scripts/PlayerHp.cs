@@ -11,9 +11,15 @@ public class PlayerHp : MonoBehaviour
     public int NowHp { get => _nowHp; set => _nowHp = value; }
     [SerializeField] Text _hpText = null;
 
+    void OnEnable()
+    {
+        NowHp = _maxHp;
+        _hpText.text = _nowHp.ToString("00");
+    }
+
     void Start()
     {
-        ChangeNowHp(_maxHp);
+        //NowHp = _maxHp;
     }
 
     void Update()

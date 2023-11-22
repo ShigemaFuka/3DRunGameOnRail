@@ -8,9 +8,13 @@ public class GM : MonoBehaviour
     [Tooltip("現在のスコア")] static int _score = 0;
     public int Score { get => _score; set => _score = value; }
     [SerializeField, Tooltip("スコアを表示するテキスト")] Text _scoreText = default;
+    [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[3]; // ギミックの生成場所とタイミングが重ならないように
+    [Tooltip("フラグを偽にするまでの時間計測")] public float[] _timers = new float[3];
     [SerializeField] UnityEvent _onStartEvent = null;
     [SerializeField] UnityEvent _inGameEvent = null;
     [SerializeField] UnityEvent _onResultEvent = null;
+    [SerializeField, Tooltip("一時停止と、途中からリスタートする用")] UnityEvent _onHelpEvent = null;
+    bool _isTimer;
 
     void Awake()
     {
@@ -41,8 +45,22 @@ public class GM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             _inGameEvent.Invoke();
+            _isTimer = true;
         }
-
+        else if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            _onHelpEvent.Invoke();
+            _isTimer = false;
+        }
+        if (_isTimer)
+        {
+            _timers[0] += Time.deltaTime;
+            _timers[1] += Time.deltaTime;
+            _timers[2] += Time.deltaTime;
+            FlagChange(0);
+            FlagChange(1);
+            FlagChange(2);
+        }
     }
 
     /// <summary>
@@ -54,15 +72,6 @@ public class GM : MonoBehaviour
         ShowText();
     }
 
-    ///// <summary>
-    ///// オブジェクトがPlayerに接触したら、この関数を呼んでスコアを減算
-    ///// </summary>
-    //public void SubtractScore(int value)
-    //{
-    //    Score -= value;
-    //    ShowText();
-    //}
-
     public void ShowText()
     {
         _scoreText.text = Score.ToString("00000");
@@ -71,6 +80,19 @@ public class GM : MonoBehaviour
     public void Result()
     {
         _onResultEvent.Invoke();
+        _isTimer = false;
         Debug.Log("Result");
+    }
+
+    void FlagChange(int boolIndex)
+    {
+        if (_isSpawn[boolIndex])
+        {
+            if (_timers[boolIndex] >= 0.3f)
+            {
+                _isSpawn[boolIndex] = false;
+                _timers[boolIndex] = 0;
+            }
+        }
     }
 }

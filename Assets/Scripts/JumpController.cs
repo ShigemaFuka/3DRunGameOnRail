@@ -12,11 +12,11 @@ public class JumpController : MonoBehaviour
 {
     Rigidbody _rb = default;
     [SerializeField, Tooltip("ジャンプ時の計算で使う")] float _jumpPower = 5;
-    [SerializeField, Tooltip("ジャンプ時に少し加速")] float _onJumpSpeed = 1.2f;
+    //[SerializeField, Tooltip("ジャンプ時に少し加速")] float _onJumpSpeed = 1.2f;
     [SerializeField, Tooltip("ジャンプできるかの接地判定")] bool _isJump = false;
     [SerializeField, Tooltip("Jump時のSE")] AudioSource _audioSource = null;
     [Tooltip("アニメーター")] Animator _animator = null;
-    [SerializeField] MovePlayer _movePlayer = null;
+    //[SerializeField] MovePlayer _movePlayer = null;
 
     void Start()
     {

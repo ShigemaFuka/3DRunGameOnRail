@@ -17,7 +17,9 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos;
     int _count;
-    [SerializeField, Tooltip("左右移動の遅延時間")] float _wfs = 0.5f;
+
+    //[SerializeField, Tooltip("左右移動の遅延時間")] float _wfs = 0.5f;
+    readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
     [SerializeField, Tooltip("左右移動")] bool _isTransform;
     public bool _isResetSpeed;
     [SerializeField, Tooltip("速度を戻すまでの時間の経過")] public float _timer;
@@ -111,7 +113,7 @@ public class MovePlayer : MonoBehaviour
     IEnumerator MoveControll()
     {
         _isTransform = false;
-        yield return new WaitForSeconds(_wfs);
+        yield return _wfs;
         _isTransform = true;
     }
 }
