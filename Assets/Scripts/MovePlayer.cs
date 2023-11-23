@@ -87,25 +87,6 @@ public class MovePlayer : MonoBehaviour
         gameObject.transform.position = _changedPos;
     }
 
-
-    /// <summary>
-    /// ジャンプ中や、加速アイテム側が使用する
-    /// </summary>
-    /// <param name="addSpeed">例）1.5など</param>
-    public void ChangeMoveSpeed(float addSpeed)
-    {
-        Speed *= addSpeed;
-    }//消すかも11.20
-
-    /// <summary>
-    /// アニメーションのイベントトリガーで使う
-    /// </summary>
-    public void ResetSpeed()
-    {
-        Speed = _defaultSpeed;
-        _isResetSpeed = true;
-    }//消すかも11.20
-
     /// <summary>
     /// 高速反復横跳びを防ぐ
     /// 若干の左右移動の遅延を起こす
