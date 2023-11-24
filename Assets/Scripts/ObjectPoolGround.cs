@@ -27,7 +27,6 @@ public class ObjectPoolGround : MonoBehaviour
     /// </summary>
     void Start()
     {
-
         //ゲームオブジェクトのZ軸方向の長さを取得して、自動で位置調整させたい
         //_zLength = _groundPrefabs[0].transform.position.z;
         //Queueの初期化

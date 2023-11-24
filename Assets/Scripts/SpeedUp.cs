@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// 取得することによって、前方へのスピードが上がるアイテム
+/// GMでタイムの計測とリセットを行う
+/// 最後に取得してからの、GMのリセット時間までスピードUPの効果がある
+/// </summary>
 public class SpeedUp : ItemBase
 {
     [SerializeField] float _addSpeed;

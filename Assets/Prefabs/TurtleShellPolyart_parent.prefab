@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurtleShellPolyart
       objectReference: {fileID: 0}
+    - target: {fileID: 7506369981329344854, guid: 9b0872160e8fa4b469d4d535d719f042, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0872160e8fa4b469d4d535d719f042, type: 3}
 --- !u!4 &3939802030062305133 stripped
