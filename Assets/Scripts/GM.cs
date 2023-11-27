@@ -15,6 +15,7 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _onResultEvent = null;
     [SerializeField, Tooltip("一時停止と、途中からリスタートする用")] UnityEvent _onHelpEvent = null;
     bool _isTimer;
+    public bool _inGame;
 
     void Awake()
     {
@@ -45,6 +46,7 @@ public class GM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             _inGameEvent.Invoke();
+            _inGame = true;
             _isTimer = true;
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
@@ -80,6 +82,7 @@ public class GM : MonoBehaviour
     public void Result()
     {
         _onResultEvent.Invoke();
+        _inGame = false;
         _isTimer = false;
         Debug.Log("Result");
     }

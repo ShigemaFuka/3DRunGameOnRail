@@ -8,6 +8,8 @@ TagManager:
   - Item
   - Fire
   - Health
+  - Gimmick
+  - SpawnGimmick
   layers:
   - Default
   - TransparentFX
