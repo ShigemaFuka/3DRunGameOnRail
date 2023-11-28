@@ -14,7 +14,8 @@ public class ScoreController : ItemBase
         {
             GM.Instance.ChangeScore(_score);
             PlayEffectAndSE();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            SetPosition();
         }
     }
 }

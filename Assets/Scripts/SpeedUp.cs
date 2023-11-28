@@ -17,7 +17,8 @@ public class SpeedUp : ItemBase
             movePlayer._timer = 0; //最後に取得したタイミングから、カウント開始
             if(movePlayer.Speed <= 100) movePlayer.Speed = ToSpeedUp(movePlayer.Speed);
             PlayEffectAndSE();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            SetPosition();
         }
     }
 

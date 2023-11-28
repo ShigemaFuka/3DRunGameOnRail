@@ -13,7 +13,8 @@ public class ChangePlayerHp : ItemBase
         {
             other.GetComponent<PlayerHp>().ChangeNowHp(_value);
             PlayEffectAndSE();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            SetPosition();
         }
     }
 }
