@@ -48,6 +48,8 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        //ポーズ中は行動停止
+        _isMove = !GM.Instance._isHelpEvent;
         if (_isMove)
         {
             if (_isTransform)

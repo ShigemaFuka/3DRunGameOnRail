@@ -3,6 +3,8 @@ using UnityEngine;
 /// <summary>
 /// アイテムや敵キャラなどの大量生成する
 /// 格納する関数をコライダーつきのオブジェクト側で呼ぶ
+/// 生成のインターバルを各アイテムや敵の種類の数だけ調整しているため、
+/// その分だけこれをアタッチする必要がある
 /// </summary>
 public class ObjectPoolItem : MonoBehaviour
 {
@@ -69,9 +71,17 @@ public class ObjectPoolItem : MonoBehaviour
 
     void Update()
     {
-        if (GM.Instance._inGame) DoSpawn();
+        //InGame中かつ、ポーズ画面でないときに実行
+        if (GM.Instance._inGame && !GM.Instance._isHelpEvent) DoSpawn();
     }
 
+    /// <summary>
+    /// 生成するたびに設定した範囲内でランダムに、インターバルを再設定する
+    /// スポーンする位置が左真ん中右（LMR）の３つ
+    /// LMRのインデックス番号もランダムにする
+    /// スポーンするアイテムや敵同士が重ならないように、GMでフラグ管理Falseのときにその位置へ生成する
+    /// ※地面のプレハブの子オブジェクトであるものとの、重なりへの対応は考えていない
+    /// </summary>
     void DoSpawn()
     {
         _intervalTimer += Time.deltaTime;

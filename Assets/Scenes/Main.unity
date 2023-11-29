@@ -1726,7 +1726,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "LR\u3078\u306EMove\u3000\uFF1A\u3000\u2190\u3000\u2192\u3000\u3000\u3000\u30B8\u30E3\u30F3\u30D7\u3000\uFF1A\u3000\u30B9\u30DA\u30FC\u30B9\u30AD\u30FC"
+  m_Text: "LR\u3078 \u306E Move\u3000\uFF1A\u3000\u2190\u3000\u2192\u3000\u3000\u3000\u30B8\u30E3\u30F3\u30D7\u3000\uFF1A\u3000\u30B9\u30DA\u30FC\u30B9\u30AD\u30FC\u3000\u3000Tab\u3000\uFF1A\u3000\u30DD\u30FC\u30BA
+    \u3068 \u30EA\u30B9\u30BF\u30FC\u30C8"
 --- !u!222 &757134912
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2398,18 +2399,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 73572a906f851574b988ac96556903d7, type: 3}
-    m_FontSize: 200
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 200
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "R\u30AD\u30FC\u3067\u3000\u306F\u3058\u3081\u304B\u3089\u30B9\u30BF\u30FC\u30C8"
+  m_Text: "<size=300>\u30DD\u30FC\u30BA</size>\n\nR\u30AD\u30FC\u3067\u3000\u306F\u3058\u3081\u304B\u3089\u30B9\u30BF\u30FC\u30C8"
 --- !u!222 &1097176321
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4796,7 +4797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMove: 1
-  _defaultSpeed: 20
+  _defaultSpeed: 5
   _x: 3
   _isTransform: 1
   _isResetSpeed: 0

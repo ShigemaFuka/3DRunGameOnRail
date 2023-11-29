@@ -2,8 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// カメラと対象物が一定距離離れたら(hitしたら)、非表示とみなし、順にCollect関数で格納する
+/// 見えないところで格納
 /// </summary>
-public class CallCollect : MonoBehaviour
+public class CallCollectGround : MonoBehaviour
 {
     [SerializeField] Vector3 _direction;
     [SerializeField] ObjectPoolGround _objectPoolGround;
@@ -15,6 +16,10 @@ public class CallCollect : MonoBehaviour
         _count = 0;
     }
 
+    /// <summary>
+    /// レイキャストでの当たり判定のために線を描画
+    /// 当たったらCollect関数で格納処理を行う
+    /// </summary>
     void Update()
     {
         Ray ray = new Ray(gameObject.transform.position, _direction * _length);
@@ -27,11 +32,11 @@ public class CallCollect : MonoBehaviour
                 _objectPoolGround.Collect(hitObj);
                 _count++;
             }
+            //格納数が０のときにLaunchしようとすると、Nullが返ってくることにより、処理に不都合があるため余裕を持たせている
             if (_count >= 3)
             {
                 _objectPoolGround.Launch();
                 _count--;
-                //Debug.Log("表示");
             }
         }
         Debug.DrawRay(gameObject.transform.position, _direction * _length, Color.red);

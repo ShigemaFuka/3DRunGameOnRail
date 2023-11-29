@@ -3,6 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// スタート・インゲーム・ゲームオーバー時の処理、
+/// 生成箇所のフラグ管理、ポーズ画面の表示するタイミングのフラグ管理
+/// </summary>
 public class GM : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static GM Instance = default;
@@ -14,7 +18,6 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _onStartEvent = null;
     [SerializeField] UnityEvent _inGameEvent = null;
     [SerializeField] UnityEvent _onResultEvent = null;
-    [SerializeField, Tooltip("一時停止と、途中からリスタートする用")] UnityEvent _onHelpEvent = null;
     bool _isTimer;
     public bool _inGame;
     [Tooltip("UIを表示するか")] public bool _isHelpEvent;
@@ -48,8 +51,7 @@ public class GM : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
             _isHelpEvent = !_isHelpEvent;
-            //_onHelpEvent.Invoke();
-            _isTimer = false;
+            _isTimer = !_isTimer;
         }
         if (_isTimer)
         {
@@ -60,8 +62,6 @@ public class GM : MonoBehaviour
             FlagChange(1);
             FlagChange(2);
         }
-        if(_isHelpEvent)
-            _onHelpEvent.Invoke();
     }
 
     /// <summary>
@@ -86,11 +86,15 @@ public class GM : MonoBehaviour
         Debug.Log("Result");
     }
 
+    /// <summary>
+    /// Trueになってから、一定時間たったらFalseにする
+    /// </summary>
+    /// <param name="boolIndex"></param>
     void FlagChange(int boolIndex)
     {
         if (_isSpawn[boolIndex])
         {
-            if (_timers[boolIndex] >= 3f)
+            if (_timers[boolIndex] >= 1.5f)
             {
                 _isSpawn[boolIndex] = false;
                 _timers[boolIndex] = 0;
