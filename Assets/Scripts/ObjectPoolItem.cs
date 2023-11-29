@@ -29,7 +29,6 @@ public class ObjectPoolItem : MonoBehaviour
             go.tag = "SpawnGimmick"; //ê∂ê¨ÇµÇΩÉMÉ~ÉbÉNÇÃÇ›CollectÇ≈Ç´ÇÈÇÊÇ§Ç…
             //QueueÇ…í«â¡ 
             PrefabQueue.Enqueue(go);
-            Debug.Log("go: " + go);
             go.SetActive(false);
         }
 

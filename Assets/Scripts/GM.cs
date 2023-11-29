@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour
 {
@@ -16,22 +17,16 @@ public class GM : MonoBehaviour
     [SerializeField, Tooltip("一時停止と、途中からリスタートする用")] UnityEvent _onHelpEvent = null;
     bool _isTimer;
     public bool _inGame;
+    [Tooltip("UIを表示するか")] public bool _isHelpEvent;
+
 
     void Awake()
     {
         // この処理は Start() に書いてもよいが、Awake() に書くことが多い。
         // 参考: イベント関数の実行順序 https://docs.unity3d.com/ja/2019.4/Manual/ExecutionOrder.html
-        if (Instance)
+        if (!Instance)
         {
-            // インスタンスが既にある場合は、破棄する
-            Debug.LogWarning($"SingletonSystem のインスタンスは既に存在するので、{gameObject.name} は破棄します。");
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            // このクラスのインスタンスが無かった場合は、自分を DontDestroyOnload に置く
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -39,6 +34,7 @@ public class GM : MonoBehaviour
     {
         Score = 0;
         _onStartEvent.Invoke();
+        _isHelpEvent = false;
     }
 
     void Update()
@@ -51,7 +47,8 @@ public class GM : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _onHelpEvent.Invoke();
+            _isHelpEvent = !_isHelpEvent;
+            //_onHelpEvent.Invoke();
             _isTimer = false;
         }
         if (_isTimer)
@@ -63,6 +60,8 @@ public class GM : MonoBehaviour
             FlagChange(1);
             FlagChange(2);
         }
+        if(_isHelpEvent)
+            _onHelpEvent.Invoke();
     }
 
     /// <summary>
@@ -97,5 +96,10 @@ public class GM : MonoBehaviour
                 _timers[boolIndex] = 0;
             }
         }
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

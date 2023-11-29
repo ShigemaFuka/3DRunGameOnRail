@@ -33,6 +33,14 @@ public class MovePlayer : MonoBehaviour
         _timer = 0;
     }
 
+    /// <summary>
+    /// コルーチンを抜ける前に残機がゼロになったとき、Falseのままだから
+    /// </summary>
+    void OnEnable()
+    {
+        _isTransform = true;
+    }
+
     void FixedUpdate()
     {
         if (_isMove) transform.Translate(Speed * Time.deltaTime * Vector3.forward);

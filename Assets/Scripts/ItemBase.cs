@@ -25,7 +25,7 @@ public class ItemBase : MonoBehaviour
     {
         if (gameObject.CompareTag("SpawnGimmick"))
         {
-            gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 5);
+            gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 10);
         }
         else gameObject.SetActive(false);
     }
