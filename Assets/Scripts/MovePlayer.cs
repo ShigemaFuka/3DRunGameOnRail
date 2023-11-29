@@ -10,7 +10,6 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove;
-    //[SerializeField] float _speed = 2;
     [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0;
     [Tooltip("現在のスコア")] static float _speed = 0;
     public float Speed { get => _speed; set => _speed = value; }

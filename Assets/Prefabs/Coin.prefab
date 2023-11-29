@@ -132,7 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 8245020734740398350}
-  _effect: {fileID: 1702657300312902, guid: a45c51da10cf1a84abc6a99c06951e3f, type: 3}
+  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
+  _collectGimmickObject: {fileID: 0}
   _score: 5
 --- !u!114 &8692546701142662471
 MonoBehaviour:

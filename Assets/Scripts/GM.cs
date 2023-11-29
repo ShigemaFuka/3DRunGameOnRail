@@ -94,7 +94,7 @@ public class GM : MonoBehaviour
     {
         if (_isSpawn[boolIndex])
         {
-            if (_timers[boolIndex] >= 1.5f)
+            if (_timers[boolIndex] >= 0.5f)
             {
                 _isSpawn[boolIndex] = false;
                 _timers[boolIndex] = 0;

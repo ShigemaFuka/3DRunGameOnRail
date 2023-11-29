@@ -15,7 +15,6 @@ public class JumpController : MonoBehaviour
     [SerializeField, Tooltip("ジャンプできるかの接地判定")] bool _isJump = false;
     [SerializeField, Tooltip("Jump時のSE")] AudioSource _audioSource = null;
     [Tooltip("アニメーター")] Animator _animator = null;
-    //[SerializeField] MovePlayer _movePlayer = null;
 
     void Start()
     {
@@ -31,8 +30,7 @@ public class JumpController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 if (_audioSource) _audioSource.PlayOneShot(_audioSource.clip);
-                _animator.SetBool("Jump", true);
-                //_movePlayer.ChangeMoveSpeed(_onJumpSpeed); 
+                _animator.SetTrigger("JumpTri");
                 _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 _isJump = false;
             }
@@ -45,13 +43,5 @@ public class JumpController : MonoBehaviour
         {
             _isJump = true;
         }
-    }
-
-    /// <summary>
-    /// アニメーションイベントで使用する
-    /// </summary>
-    void ToFalseJumpAnim()
-    {
-        _animator.SetBool("Jump", false);
     }
 }

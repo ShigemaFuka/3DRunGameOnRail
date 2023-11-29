@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9bee1ece51592f843996472527e9e1bc, type: 2}
+  - {fileID: 2100000, guid: c175fd458560ab44caec85e5cb514baa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 3425842230206041351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3424332834115104592}
@@ -226,7 +226,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.41999996
-  m_Center: {x: 0, y: 0, z: 0.000000029802322}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1899504853747815266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,5 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 6096906679199630141}
-  _effect: {fileID: 1702657300312902, guid: a45c51da10cf1a84abc6a99c06951e3f, type: 3}
+  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
+  _collectGimmickObject: {fileID: 0}
   _addSpeed: 5

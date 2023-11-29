@@ -226,8 +226,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25295
-  m_Center: {x: -0.00000007071872, y: 0.12511864, z: 0.000000003867206}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.46, z: 0}
 --- !u!114 &3599953699070802233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 631644854808186044}
   _effect: {fileID: 9177726125383036550, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
+  _collectGimmickObject: {fileID: 0}
   _value: 1
 --- !u!114 &857409335665391259
 MonoBehaviour:
