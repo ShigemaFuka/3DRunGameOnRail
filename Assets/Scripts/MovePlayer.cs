@@ -23,6 +23,8 @@ public class MovePlayer : MonoBehaviour
     public bool _isResetSpeed;
     [SerializeField, Tooltip("‘¬“x‚ğ–ß‚·‚Ü‚Å‚ÌŠÔ‚ÌŒo‰ß")] public float _timer;
     [SerializeField, Tooltip("‘¬“x‚ğ–ß‚·‚Ü‚Å‚ÌŠÔ")] float _resetTime = 5f;
+    [SerializeField, Tooltip("‘–‚Á‚½‚Æ‚±‚ë‚Ìc‘œ")] TrailRenderer _trailRenderer;
+    float _startTrailRendererTime;
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class MovePlayer : MonoBehaviour
         Speed = _defaultSpeed;
         _isResetSpeed = false;
         _timer = 0;
+        _startTrailRendererTime = _trailRenderer.time;
     }
 
     /// <summary>
@@ -73,6 +76,7 @@ public class MovePlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            _trailRenderer.enabled = false; //¶‰E‚ÉˆÚ“®‚·‚éuŠÔ‚¾‚¯•`‰æ‚µ‚È‚¢
             if (_count < 1)
             {
                 _count++;
@@ -81,6 +85,7 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            _trailRenderer.enabled = false; //¶‰E‚ÉˆÚ“®‚·‚éuŠÔ‚¾‚¯•`‰æ‚µ‚È‚¢
             if (_count > -1)
             {
                 _count--;
@@ -94,6 +99,7 @@ public class MovePlayer : MonoBehaviour
         else if (_count == -1)
             _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = _changedPos;
+        _trailRenderer.enabled = true; //•`‰æ
     }
 
     /// <summary>
