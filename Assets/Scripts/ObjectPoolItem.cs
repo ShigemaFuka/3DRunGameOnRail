@@ -77,7 +77,7 @@ public class ObjectPoolItem : MonoBehaviour
     void Update()
     {
         //InGame中かつ、ポーズ画面でないときに実行
-        if (GM.Instance._inGame && !GM.Instance._isHelpEvent) DoSpawn();
+        if (GM.Instance._inGame && !GM.Instance._isPause) DoSpawn();
     }
 
     /// <summary>

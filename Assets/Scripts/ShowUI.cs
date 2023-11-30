@@ -14,7 +14,7 @@ public class ShowUI : MonoBehaviour
 
     void Update()
     {
-        if (GM.Instance._isHelpEvent == true)
+        if (GM.Instance._isPause == true)
         {
             _target.SetActive(true);
         }

@@ -17,10 +17,10 @@ public class GM : MonoBehaviour
     [Tooltip("フラグを偽にするまでの時間計測")] public float[] _timers = new float[3];
     [SerializeField] UnityEvent _onStartEvent = null;
     [SerializeField] UnityEvent _inGameEvent = null;
-    [SerializeField] UnityEvent _onResultEvent = null;
-    bool _isTimer;
+    [SerializeField] UnityEvent _onGameOverEvent = null;
+    //bool _isTimer;
     public bool _inGame;
-    [Tooltip("UIを表示するか")] public bool _isHelpEvent;
+    [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause;
 
 
     void Awake()
@@ -37,7 +37,7 @@ public class GM : MonoBehaviour
     {
         Score = 0;
         _onStartEvent.Invoke();
-        _isHelpEvent = false;
+        _isPause = false;
     }
 
     void Update()
@@ -46,14 +46,15 @@ public class GM : MonoBehaviour
         {
             _inGameEvent.Invoke();
             _inGame = true;
-            _isTimer = true;
+            //_isTimer = true;
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _isHelpEvent = !_isHelpEvent;
-            _isTimer = !_isTimer;
+            _isPause = !_isPause;
+            //_isTimer = !_isTimer;
         }
-        if (_isTimer)
+        //if (_isTimer)
+        if (_inGame && !_isPause)
         {
             _timers[0] += Time.deltaTime;
             _timers[1] += Time.deltaTime;
@@ -70,19 +71,14 @@ public class GM : MonoBehaviour
     public void ChangeScore(int value)
     {
         Score += value;
-        ShowText();
-    }
-
-    public void ShowText()
-    {
         _scoreText.text = Score.ToString("00000");
     }
 
     public void Result()
     {
-        _onResultEvent.Invoke();
+        _onGameOverEvent.Invoke();
         _inGame = false;
-        _isTimer = false;
+        //_isTimer = false;
         Debug.Log("Result");
     }
 
