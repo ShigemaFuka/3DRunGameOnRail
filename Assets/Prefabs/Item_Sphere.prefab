@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 617765860291120232}
   m_Layer: 0
   m_Name: Item_Sphere
-  m_TagString: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,8 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _score: 5
   _audioSource: {fileID: 617765860291120232}
+  _effect: {fileID: 0}
+  _collectGimmickObject: {fileID: 0}
+  _score: 5
 --- !u!82 &617765860291120232
 AudioSource:
   m_ObjectHideFlags: 0

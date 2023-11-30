@@ -4,7 +4,7 @@ public class ItemBase : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource = default;
     [SerializeField] GameObject _effect;
-    [SerializeField, Tooltip("ギミックのCollectオブジェクト")] GameObject _collectGimmickObject;
+    [SerializeField, Tooltip("ギミックのCollectを呼ぶオブジェクト")] GameObject _collectGimmickObject;
 
     void Start()
     {
@@ -18,15 +18,20 @@ public class ItemBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 地面のプレハブの子オブジェクト: 即座に非アクティブにする
+    /// スポーンされるオブジェクト: 
     /// Collect関数を呼ぶコライダーつきのオブジェクト付近かつ、
     /// カメラに映らない位置に移動させる
     /// </summary>
     public void SetPosition()
     {
-        if (gameObject.CompareTag("SpawnGimmick"))
+        //デフォルトでGimmickのタグが付いている
+        //それが付いていないアイテムや敵キャラのオブジェクトについては、スポーン時に別のタグに更新されているから
+        if (gameObject.CompareTag("Gimmick"))
         {
-            gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 10);
+            gameObject.SetActive(false);
         }
-        else gameObject.SetActive(false);
+        //スポーンされるオブジェクト カメラに映らないところで格納する
+        else gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 10);
     }
 }

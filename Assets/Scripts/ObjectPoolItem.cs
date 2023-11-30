@@ -11,13 +11,15 @@ public class ObjectPoolItem : MonoBehaviour
     [SerializeField, Tooltip("生成したいプレハブ")] GameObject _prefab = default;
     [Tooltip("生成したプレハブを格納するQueue")] public Queue<GameObject> PrefabQueue;
     [SerializeField, Tooltip("生成しておく数")] int _maxCount = 10;
-    [SerializeField, Tooltip("空の親オブジェクト")] GameObject _parentObject = default;
+    //[SerializeField, Tooltip("空の親オブジェクト")] GameObject _parentObject = default;
 
+    [SerializeField, Tooltip("スポーン場所の親オブジェクト")] GameObject _spawnsParent;
     [SerializeField, Tooltip("スポーン場所")] GameObject[] _spawns = new GameObject[3];
     [SerializeField] float _intervalMin = 0;
     [SerializeField] float _intervalMax = 0;
     [SerializeField] float _interval = 0;
     [SerializeField] float _intervalTimer = 0;
+    [SerializeField, Tooltip("タグの名前")] string _tagName;
 
     /// <summary>
     /// 事前に一定量を生成し、非アクティブしたあと格納しておく
@@ -25,10 +27,12 @@ public class ObjectPoolItem : MonoBehaviour
     void Start()
     {
         PrefabQueue = new Queue<GameObject>();
+        _tagName = gameObject.name;
+        Debug.Log("_tagName : " + _tagName);
         for (int i = 0; i < _maxCount; i++)
         {
-            GameObject go = Instantiate(_prefab, _parentObject.transform);
-            go.tag = "SpawnGimmick"; //生成したギミックのみCollectできるように
+            GameObject go = Instantiate(_prefab, gameObject.transform);
+            go.tag = _tagName; //生成したギミックのみCollectできるように
             //Queueに追加 
             PrefabQueue.Enqueue(go);
             go.SetActive(false);
@@ -37,7 +41,7 @@ public class ObjectPoolItem : MonoBehaviour
         _interval = Random.Range(_intervalMin, _intervalMax);
         for (var i = 0; i < _spawns.Length; i++)
         {
-            _spawns[i] = transform.GetChild(i).gameObject;
+            _spawns[i] = _spawnsParent.transform.GetChild(i).gameObject;
         }
     }
 
@@ -59,6 +63,7 @@ public class ObjectPoolItem : MonoBehaviour
     /// <returns>取り出したオブジェクトかNull</returns>
     public GameObject Launch()
     {
+        Debug.Log("PrefabQueue.Count : " + PrefabQueue.Count);
         //Queueが空ならnull
         if (PrefabQueue.Count <= 0) return null;
         //Queueからオブジェクトを一つ取り出す
@@ -85,13 +90,14 @@ public class ObjectPoolItem : MonoBehaviour
     void DoSpawn()
     {
         _intervalTimer += Time.deltaTime;
+            int spawnIndex = Random.Range(0, _spawns.Length);
         if (_intervalTimer >= _interval)
         {
-            int spawnIndex = Random.Range(0, _spawns.Length);
-            if (GM.Instance._isSpawn[spawnIndex] == false)
+            //if (GM.Instance._isSpawn[spawnIndex] == false)
             {
                 var go = Launch();
-                if(go) go.transform.position = _spawns[spawnIndex].transform.position;
+                if (go) go.transform.position = _spawns[spawnIndex].transform.position;
+                else Debug.Log(go);
                 GM.Instance._isSpawn[spawnIndex] = true;
             }
             _interval = Random.Range(_intervalMin, _intervalMax);
