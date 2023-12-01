@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1627797176905216777, guid: c7ba69a7da66a3e4685c03f1f5f9658d, type: 3}
-  _maxCount: 10
+  _maxCount: 5
   _spawnsParent: {fileID: 1362719842}
   _spawns:
   - {fileID: 0}
@@ -6508,7 +6508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3425842230206041351, guid: 03d1745d64907ff4681487cdd9575e39, type: 3}
-  _maxCount: 10
+  _maxCount: 5
   _spawnsParent: {fileID: 1362719842}
   _spawns:
   - {fileID: 0}
@@ -8676,7 +8676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5906442023707844267, guid: 612a199cfd26894449e5f6da078dfc5e, type: 3}
-  _maxCount: 10
+  _maxCount: 5
   _spawnsParent: {fileID: 1362719842}
   _spawns:
   - {fileID: 0}

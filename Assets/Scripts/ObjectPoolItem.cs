@@ -28,7 +28,6 @@ public class ObjectPoolItem : MonoBehaviour
     {
         PrefabQueue = new Queue<GameObject>();
         _tagName = gameObject.name;
-        Debug.Log("_tagName : " + _tagName);
         for (int i = 0; i < _maxCount; i++)
         {
             GameObject go = Instantiate(_prefab, gameObject.transform);
@@ -63,7 +62,6 @@ public class ObjectPoolItem : MonoBehaviour
     /// <returns>取り出したオブジェクトかNull</returns>
     public GameObject Launch()
     {
-        Debug.Log("PrefabQueue.Count : " + PrefabQueue.Count);
         //Queueが空ならnull
         if (PrefabQueue.Count <= 0) return null;
         //Queueからオブジェクトを一つ取り出す
@@ -90,18 +88,17 @@ public class ObjectPoolItem : MonoBehaviour
     void DoSpawn()
     {
         _intervalTimer += Time.deltaTime;
-            int spawnIndex = Random.Range(0, _spawns.Length);
+        int spawnIndex = Random.Range(0, _spawns.Length);
         if (_intervalTimer >= _interval)
         {
-            //if (GM.Instance._isSpawn[spawnIndex] == false)
+            if (GM.Instance._isSpawn[spawnIndex] == false)
             {
                 var go = Launch();
                 if (go) go.transform.position = _spawns[spawnIndex].transform.position;
-                else Debug.Log(go);
                 GM.Instance._isSpawn[spawnIndex] = true;
+                _interval = Random.Range(_intervalMin, _intervalMax);
+                _intervalTimer = 0;
             }
-            _interval = Random.Range(_intervalMin, _intervalMax);
-            _intervalTimer = 0;
         }
     }
 }
