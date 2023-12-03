@@ -14,7 +14,8 @@ public class ObjectPoolGround : MonoBehaviour
     [Tooltip("生成した地面を格納するQueue")] static Queue<GameObject> _groundPrefabQueue;
     public Queue<GameObject> GroundPrefabQueue { get => _groundPrefabQueue; set => _groundPrefabQueue = value; }
     [Header("連続で同じプレハブが出ることもある")]
-    [SerializeField, Tooltip("生成しておく地面の数")] int _maxCount = 5;
+    [SerializeField, Tooltip("生成しておく地面の数")] int _maxNum = 5;
+    [SerializeField, Tooltip("表示しておく地面の数")] int _visibleNum = 5;
     [Tooltip("ランダムで地面リストの要素を指定するためのインデックス")] int _randomPrefabsIndex;
     [SerializeField, Tooltip("空の親オブジェクト")] GameObject _parentObject = default;
     [Tooltip("プレハブの表示位置")] Vector3 _pos;
@@ -28,7 +29,7 @@ public class ObjectPoolGround : MonoBehaviour
     {
         //Queueの初期化
         GroundPrefabQueue = new Queue<GameObject>();
-        for (int i = 0; i < _maxCount; i++)
+        for (int i = 0; i < _maxNum; i++)
         {
             _randomPrefabsIndex = Random.Range(0, _groundPrefabs.Length);
             GameObject go = Instantiate(_groundPrefabs[_randomPrefabsIndex], _parentObject.transform);
@@ -36,7 +37,7 @@ public class ObjectPoolGround : MonoBehaviour
             GroundPrefabQueue.Enqueue(go);
             go.SetActive(false);
         }
-        for (int i = 0; i < _maxCount; i++)
+        for (int i = 0; i < _visibleNum; i++)
         {
             Launch();
         }

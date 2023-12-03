@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,12 +7,11 @@ using UnityEngine;
 /// </summary>
 public class SetActiveChildren : MonoBehaviour
 {
-    [SerializeField] Transform[] _childrenTransform = null;
+    [SerializeField] List<Transform> _childrenTransform = null;
     bool _hasChildren;
 
     void Start()
     {
-        _childrenTransform = new Transform[transform.childCount];
         GetChildren();
     }
 
@@ -30,12 +30,17 @@ public class SetActiveChildren : MonoBehaviour
     }
 
     /// <summary>
-    /// 地面プレハブ直下の子オブジェクトを全て取得
+    /// 地面プレハブ直下の子オブジェクトを取得
+    /// アイテムや敵キャラ以外の、モデルは対象外
     /// </summary>
     void GetChildren()
     {
         for (var i = 0; i < transform.childCount; i++)
-            _childrenTransform[i] = transform.GetChild(i);
+        {
+            var child = transform.GetChild(i);
+            if (child.CompareTag("Gimmick"))
+                _childrenTransform.Add(child);
+        }
         _hasChildren = true;
     }
 }
