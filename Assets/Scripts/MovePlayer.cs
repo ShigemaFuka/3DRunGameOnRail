@@ -15,16 +15,14 @@ public class MovePlayer : MonoBehaviour
     public float Speed { get => _speed; set => _speed = value; }
     [SerializeField, Tooltip("X²•ûŒü‚Ö‚ÌˆÚ“®”ÍˆÍ")] float _x = 3;
     [Tooltip("ˆÊ’u•ÏX‚ğ“K‰‚³‚¹‚é")] Vector3 _changedPos;
-    int _count;
+    [SerializeField] int _count;
 
-    //[SerializeField, Tooltip("¶‰EˆÚ“®‚Ì’x‰„ŠÔ")] float _wfs = 0.5f;
     readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
     [SerializeField, Tooltip("¶‰EˆÚ“®")] bool _isTransform;
     public bool _isResetSpeed;
     [SerializeField, Tooltip("‘¬“x‚ğ–ß‚·‚Ü‚Å‚ÌŠÔ‚ÌŒo‰ß")] public float _timer;
     [SerializeField, Tooltip("‘¬“x‚ğ–ß‚·‚Ü‚Å‚ÌŠÔ")] float _resetTime = 5f;
     [SerializeField, Tooltip("‘–‚Á‚½‚Æ‚±‚ë‚Ìc‘œ")] TrailRenderer _trailRenderer;
-    float _startTrailRendererTime;
 
     void Start()
     {
@@ -32,7 +30,6 @@ public class MovePlayer : MonoBehaviour
         Speed = _defaultSpeed;
         _isResetSpeed = false;
         _timer = 0;
-        _startTrailRendererTime = _trailRenderer.time;
     }
 
     /// <summary>
@@ -46,6 +43,8 @@ public class MovePlayer : MonoBehaviour
     void FixedUpdate()
     {
         if (_isMove) transform.Translate(Speed * Time.deltaTime * Vector3.forward);
+        if (Speed > _defaultSpeed) _trailRenderer.enabled = true; //•`‰æ
+        else _trailRenderer.enabled = false;
     }
 
     void Update()
@@ -76,7 +75,6 @@ public class MovePlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            _trailRenderer.enabled = false; //¶‰E‚ÉˆÚ“®‚·‚éuŠÔ‚¾‚¯•`‰æ‚µ‚È‚¢
             if (_count < 1)
             {
                 _count++;
@@ -85,7 +83,6 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            _trailRenderer.enabled = false; //¶‰E‚ÉˆÚ“®‚·‚éuŠÔ‚¾‚¯•`‰æ‚µ‚È‚¢
             if (_count > -1)
             {
                 _count--;
@@ -99,7 +96,17 @@ public class MovePlayer : MonoBehaviour
         else if (_count == -1)
             _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = _changedPos;
-        _trailRenderer.enabled = true; //•`‰æ
+
+        //if (_count == 1)
+        //{
+        //    if (_changedPos.x < 3f)
+        //        _changedPos.x += 0.01f;
+        //}
+        //else if (_count == 0)
+        //    _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
+        //else if (_count == -1)
+        //    _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
+        //gameObject.transform.position = _changedPos;
     }
 
     /// <summary>
