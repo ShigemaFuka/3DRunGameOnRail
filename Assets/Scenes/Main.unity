@@ -3694,7 +3694,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1600235142
 Transform:
   m_ObjectHideFlags: 0
@@ -3760,8 +3760,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundPrefabs:
-  - {fileID: 6563980460036627772, guid: fe6af63c6bbca3d47b0fc7e2a0cf31c0, type: 3}
-  - {fileID: 6563980460036627772, guid: 349b63c69f4ea61439884dcdb326a478, type: 3}
   - {fileID: 6471398864851900630, guid: bfee982e77c51fd499e83186f86bd1d7, type: 3}
   _maxNum: 20
   _visibleNum: 10
@@ -4359,8 +4357,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _intervalMin: 3
-  _intervalMax: 5
+  _intervalMin: 4
+  _intervalMax: 6
   _interval: 0
   _intervalTimer: 0
   _tagName: SpawnHealth
