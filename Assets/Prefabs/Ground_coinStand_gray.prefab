@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6563980460036627771}
   - component: {fileID: 1827836116675177967}
   m_Layer: 0
-  m_Name: Ground_coin_grey
+  m_Name: Ground_coinStand_gray
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

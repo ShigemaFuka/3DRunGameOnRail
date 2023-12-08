@@ -200,14 +200,14 @@ MonoBehaviour:
   - {x: -1, y: 0.5, z: 1}
   - {x: 0, y: 0.5, z: 1}
   - {x: 0, y: -0.5, z: 2}
-  - {x: 0, y: -0.5, z: -2}
+  - {x: 0, y: -0.5, z: -3}
   - {x: 0, y: 0.5, z: 1}
   - {x: 0, y: 0.5, z: -1}
-  - {x: 0, y: -0.5, z: -2}
-  - {x: -1, y: -0.5, z: -2}
+  - {x: 0, y: -0.5, z: -3}
+  - {x: -1, y: -0.5, z: -3}
   - {x: 0, y: 0.5, z: -1}
   - {x: -1, y: 0.5, z: -1}
-  - {x: -1, y: -0.5, z: -2}
+  - {x: -1, y: -0.5, z: -3}
   - {x: -1, y: -0.5, z: 2}
   - {x: -1, y: 0.5, z: -1}
   - {x: -1, y: 0.5, z: 1}
@@ -215,8 +215,8 @@ MonoBehaviour:
   - {x: 0, y: 0.5, z: 1}
   - {x: -1, y: 0.5, z: -1}
   - {x: 0, y: 0.5, z: -1}
-  - {x: -1, y: -0.5, z: -2}
-  - {x: 0, y: -0.5, z: -2}
+  - {x: -1, y: -0.5, z: -3}
+  - {x: 0, y: -0.5, z: -3}
   - {x: -1, y: -0.5, z: 2}
   - {x: 0, y: -0.5, z: 2}
   m_Textures0:
@@ -225,14 +225,14 @@ MonoBehaviour:
   - {x: 1, y: -0.3535534}
   - {x: 0, y: -0.3535534}
   - {x: 2, y: -0.5}
-  - {x: -2, y: -0.5}
+  - {x: -3, y: -0.5}
   - {x: 1, y: 0.5}
   - {x: -1, y: 0.5}
-  - {x: 0, y: -1.7677671}
-  - {x: -1, y: -1.7677671}
-  - {x: 0, y: -0.3535534}
-  - {x: -1, y: -0.3535534}
-  - {x: 2, y: -0.5}
+  - {x: 0, y: -2.9068882}
+  - {x: -1, y: -2.9068882}
+  - {x: 0, y: -0.67082036}
+  - {x: -1, y: -0.67082036}
+  - {x: 3, y: -0.5}
   - {x: -2, y: -0.5}
   - {x: 1, y: 0.5}
   - {x: -1, y: 0.5}
@@ -240,8 +240,8 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: -1, y: -1}
   - {x: 0, y: -1}
-  - {x: 1, y: -2}
-  - {x: -0, y: -2}
+  - {x: 1, y: -3}
+  - {x: -0, y: -3}
   - {x: 1, y: 2}
   - {x: 0, y: 2}
   m_Textures2: []
@@ -280,11 +280,13 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3215
+  m_VersionIndex: 3247
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedEdges:
+  - a: 8
+    b: 9
+  m_SelectedVertices: 0800000009000000
 --- !u!114 &8522721024983589994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +375,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}

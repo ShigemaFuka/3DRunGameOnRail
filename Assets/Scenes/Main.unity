@@ -1720,8 +1720,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _intervalMin: 2
-  _intervalMax: 3
+  _intervalMin: 5
+  _intervalMax: 6
   _interval: 0
   _intervalTimer: 0
   _tagName: SpawnEnemyWithSpeedUp
@@ -2132,7 +2132,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18910751, y: 0.0000000084479606, z: -0.0000000016269286, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: -0.000000008447955, z: 0.0000000016269276, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 4, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3313,7 +3313,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512593862}
-  m_LocalRotation: {x: 0.18910751, y: 0.0000000084479606, z: -0.0000000016269286, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: -0.000000008447955, z: 0.0000000016269276, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 4, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3470,8 +3470,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _intervalMin: 1.5
-  _intervalMax: 2.5
+  _intervalMin: 3
+  _intervalMax: 4
   _interval: 0
   _intervalTimer: 0
   _tagName: SpawnSpeedUp
@@ -3760,8 +3760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundPrefabs:
-  - {fileID: 6471398864851900630, guid: bfee982e77c51fd499e83186f86bd1d7, type: 3}
-  - {fileID: 6563980460036627772, guid: fe6af63c6bbca3d47b0fc7e2a0cf31c0, type: 3}
+  - {fileID: 6563980460036627772, guid: 27d040bcb6c67a94e8bd31fab2144ff8, type: 3}
   _maxNum: 20
   _visibleNum: 10
   _parentObject: {fileID: 1719783309}
@@ -4302,7 +4301,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _intervalMin: 1
+  _intervalMin: 2
   _intervalMax: 3
   _interval: 0
   _intervalTimer: 0
@@ -4687,7 +4686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca13e9340e379014ca79b3c899a950ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 3
+  _maxHp: 100
   _hpText: {fileID: 1340027523}
 --- !u!1 &2104578316
 GameObject:
