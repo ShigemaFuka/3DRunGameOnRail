@@ -18,7 +18,6 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _onStartEvent = null;
     [SerializeField] UnityEvent _inGameEvent = null;
     [SerializeField] UnityEvent _onGameOverEvent = null;
-    //bool _isTimer;
     public bool _inGame;
     [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause;
 
@@ -42,18 +41,17 @@ public class GM : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        //リスタート
+        if (Input.GetKeyDown(KeyCode.Return)&& !_inGame)
         {
             _inGameEvent.Invoke();
             _inGame = true;
-            //_isTimer = true;
         }
+        //ポーズ画面
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
             _isPause = !_isPause;
-            //_isTimer = !_isTimer;
         }
-        //if (_isTimer)
         if (_inGame && !_isPause)
         {
             _timers[0] += Time.deltaTime;
@@ -74,12 +72,11 @@ public class GM : MonoBehaviour
         _scoreText.text = Score.ToString("00000");
     }
 
-    public void Result()
+    public void GameOver()
     {
         _onGameOverEvent.Invoke();
         _inGame = false;
-        //_isTimer = false;
-        Debug.Log("Result");
+        Debug.Log("GameOver");
     }
 
     /// <summary>

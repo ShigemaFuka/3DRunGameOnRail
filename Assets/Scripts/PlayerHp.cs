@@ -17,16 +17,11 @@ public class PlayerHp : MonoBehaviour
         _hpText.text = _nowHp.ToString("00");
     }
 
-    void Start()
-    {
-        //NowHp = _maxHp;
-    }
-
     void Update()
     {
         if (_nowHp <= 0)
         {
-            GM.Instance.Result();
+            GM.Instance.GameOver();
         }
     }
 
@@ -34,10 +29,5 @@ public class PlayerHp : MonoBehaviour
     {
         _nowHp += value;
         _hpText.text = _nowHp.ToString("00");
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        
     }
 }
