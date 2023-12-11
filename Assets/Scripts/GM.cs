@@ -20,6 +20,7 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _onGameOverEvent = null;
     public bool _inGame;
     [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause;
+    [Tooltip("プレイヤーの無敵化")] public bool _isInvincible;
 
 
     void Awake()
@@ -76,6 +77,7 @@ public class GM : MonoBehaviour
     {
         _onGameOverEvent.Invoke();
         _inGame = false;
+        _isInvincible = true;
         Debug.Log("GameOver");
     }
 

@@ -5,13 +5,13 @@ using UnityEngine;
 /// Z軸方向にまっすぐ移動する
 /// カーソルキーで左右に移動
 /// ※３レーン上で動くように見せかける
-/// ジャンプ時のZ軸移動が遅く見えるため、そのときだけ少し加速するように、関数を用意
+/// 速度上昇中はTrailRendererで軌跡を表示
 /// </summary>
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove;
     [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0;
-    [Tooltip("現在のスコア")] static float _speed = 0;
+    [Tooltip("現在のスピード")] static float _speed = 0;
     public float Speed { get => _speed; set => _speed = value; }
     [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos;
@@ -23,6 +23,9 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("速度を戻すまでの時間の経過")] public float _timer;
     [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 5f;
     [SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer;
+
+    [SerializeField, Header("正数で良い"), Tooltip("プラマイでｘ軸の移動範囲")] float _xRange = 2.0f;
+    [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed;
 
     void Start()
     {
@@ -49,11 +52,21 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        //落下死
+        if (transform.position.y <= -3)
+        {
+            GM.Instance.GameOver();
+            var pos = transform.position;
+            pos.z -= 10f; // 少し手前に戻す
+            // 位置を修正
+            transform.position = new Vector3(pos.x, 0, pos.z);
+        }
+
         //ポーズ中は行動停止
         _isMove = !GM.Instance._isPause;
         if (_isMove)
         {
-            if (_isTransform)
+            if (_isTransform) //Move2();
                 Move();
         }
         //一定時間経過したら、速度を戻す
@@ -70,10 +83,11 @@ public class MovePlayer : MonoBehaviour
 
     /// <summary>
     /// カーソルキーで左右移動
+    /// 座標指定の移動のため、瞬間移動のような挙動
     /// </summary>
     void Move()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if (_count < 1)
             {
@@ -81,7 +95,7 @@ public class MovePlayer : MonoBehaviour
                 StartCoroutine(MoveControll());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if (_count > -1)
             {
@@ -96,17 +110,16 @@ public class MovePlayer : MonoBehaviour
         else if (_count == -1)
             _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
         gameObject.transform.position = _changedPos;
+    }
 
-        //if (_count == 1)
-        //{
-        //    if (_changedPos.x < 3f)
-        //        _changedPos.x += 0.01f;
-        //}
-        //else if (_count == 0)
-        //    _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
-        //else if (_count == -1)
-        //    _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
-        //gameObject.transform.position = _changedPos;
+    /// <summary>
+    /// ガタつく
+    /// </summary>
+    void Move2()
+    {
+        float h = Input.GetAxis("Horizontal");
+        if (h > 0)
+            transform.position += new Vector3(h * Time.deltaTime * _xSpeed, 0f, 0f);
     }
 
     /// <summary>
