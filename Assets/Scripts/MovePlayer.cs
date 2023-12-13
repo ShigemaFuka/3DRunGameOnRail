@@ -66,8 +66,8 @@ public class MovePlayer : MonoBehaviour
         _isMove = !GM.Instance._isPause;
         if (_isMove)
         {
-            if (_isTransform) //Move2();
-                Move();
+            if (_isTransform) Move2();
+                //Move();
         }
         //一定時間経過したら、速度を戻す
         if (Speed != _defaultSpeed)
@@ -113,13 +113,24 @@ public class MovePlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// ガタつく
+    /// ３レーンの縛りがない方
     /// </summary>
     void Move2()
     {
-        float h = Input.GetAxis("Horizontal");
-        if (h > 0)
-            transform.position += new Vector3(h * Time.deltaTime * _xSpeed, 0f, 0f);
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            if (transform.position.x < _xRange)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * _xSpeed);
+            }
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            if (transform.position.x > -_xRange)
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * _xSpeed);
+            }
+        }
     }
 
     /// <summary>

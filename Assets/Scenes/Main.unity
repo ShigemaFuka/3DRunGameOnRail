@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 4, z: -5}
-  m_XDamping: 0.5
+  m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0.5
   m_AngularDampingMode: 0
@@ -3806,8 +3806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundPrefabs:
-  - {fileID: 8644182541521363196, guid: 9bf427e5a97b90c459a5aa45c0e73c76, type: 3}
-  - {fileID: 8241219937536979501, guid: fcab469db2f177e45a4a18df646e489d, type: 3}
+  - {fileID: 6563980460036627772, guid: 349b63c69f4ea61439884dcdb326a478, type: 3}
   _maxNum: 20
   _visibleNum: 10
   _parentObject: {fileID: 1719783309}
@@ -4666,7 +4665,7 @@ MonoBehaviour:
   _resetTime: 5
   _trailRenderer: {fileID: 860027725}
   _xRange: 3
-  _xSpeed: 5
+  _xSpeed: 7
 --- !u!114 &2073467338
 MonoBehaviour:
   m_ObjectHideFlags: 0
