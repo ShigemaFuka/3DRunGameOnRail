@@ -19,10 +19,29 @@ public class PlayerHp : MonoBehaviour
 
     void Update()
     {
-        if (_nowHp <= 0)
+        // 以下 早期リターンしている
+        // 利点
+        // １）ネストが深くならない
+        // ２）結局どのような処理を行いたいのかが分かりやすい
+        // 今回くらいの複雑でないコードでは大差ない
+        if (_nowHp > 0)
         {
-            GM.Instance.GameOver();
+            return;
         }
+        if(!GM.Instance._isPause)
+        {
+            return;
+        }
+        GM.Instance.GameOver();
+
+        //
+        //if (_nowHp <= 0)
+        //{
+        //    if(GM.Instance._isPause)  //?要る？？
+        //    {
+        //        GM.Instance.GameOver();
+        //    }
+        //}
     }
 
     public void ChangeNowHp(int value)

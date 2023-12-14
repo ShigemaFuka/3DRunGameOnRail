@@ -29,6 +29,11 @@ public class MovePlayer : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         _count = 0;
         Speed = _defaultSpeed;
         _isResetSpeed = false;
@@ -84,6 +89,7 @@ public class MovePlayer : MonoBehaviour
     /// <summary>
     /// カーソルキーで左右移動
     /// 座標指定の移動のため、瞬間移動のような挙動
+    /// ミニオンラッシュ系
     /// </summary>
     void Move()
     {
@@ -114,6 +120,7 @@ public class MovePlayer : MonoBehaviour
 
     /// <summary>
     /// ３レーンの縛りがない方
+    /// テンプルラン系
     /// </summary>
     void Move2()
     {

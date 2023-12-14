@@ -11,17 +11,23 @@ public class GM : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static GM Instance = default;
     [Tooltip("現在のスコア")] static int _score = 0;
-    public int Score { get => _score; set => _score = value; }
     [SerializeField, Tooltip("スコアを表示するテキスト")] Text _scoreText = default;
     [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[3]; // ギミックの生成場所とタイミングが重ならないように
-    [Tooltip("フラグを偽にするまでの時間計測")] public float[] _timers = new float[3];
-    [SerializeField] UnityEvent _onStartEvent = null;
-    [SerializeField] UnityEvent _inGameEvent = null;
-    [SerializeField] UnityEvent _onGameOverEvent = null;
-    public bool _inGame;
-    [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause;
-    [Tooltip("プレイヤーの無敵化")] public bool _isInvincible;
+    [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[3];
+    [SerializeField] UnityEvent _onStartEvent = default;
+    [SerializeField] UnityEvent _inGameEvent = default;
+    [SerializeField] UnityEvent _onGameOverEvent = default;
+    public bool _inGame = false;
+    [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
+    [Tooltip("プレイヤーの無敵化")] public bool _isInvincible = false;
 
+    #region"プロパティ"
+    //↑プロパティをまとめておいて、開閉することでコード全体を見やすくする
+    //private ScoreManager _scoreManager;
+    //public ScoreManager ScoreManager => _scoreManager; 
+    //↑こうしておくと、GMを参照すればそのクラスを利用できる
+    public int Score { get => _score; set => _score = value; }
+    #endregion
 
     void Awake()
     {

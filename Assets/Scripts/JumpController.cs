@@ -39,7 +39,7 @@ public class JumpController : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Ground"))
+        if (coll.gameObject.CompareTag("Ground") || coll.gameObject.name == "Board")
         {
             _isJump = true;
         }
