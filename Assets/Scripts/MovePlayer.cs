@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -9,23 +10,31 @@ using UnityEngine;
 /// </summary>
 public class MovePlayer : MonoBehaviour
 {
-    [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove;
-    [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0;
-    [Tooltip("現在のスピード")] static float _speed = 0;
-    public float Speed { get => _speed; set => _speed = value; }
-    [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3;
-    [Tooltip("位置変更を適応させる")] Vector3 _changedPos;
-    [SerializeField] int _count;
+    [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove = default;
+    [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0f;
+    [Tooltip("現在のスピード")] static float _speed = 0f;
+    [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3f;
+    [Tooltip("位置変更を適応させる")] Vector3 _changedPos = default;
+    [SerializeField] int _count = 0;
 
     readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
-    [SerializeField, Tooltip("左右移動")] bool _isTransform;
-    public bool _isResetSpeed;
-    [SerializeField, Tooltip("速度を戻すまでの時間の経過")] public float _timer;
+    [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
+    [Tooltip("速度を戻すまでの時間の経過")] public float _timer = 0f;
     [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 5f;
-    [SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer;
+    //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
 
     [SerializeField, Header("正数で良い"), Tooltip("プラマイでｘ軸の移動範囲")] float _xRange = 2.0f;
-    [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed;
+    [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed = 7f;
+    [SerializeField, Tooltip("速度上昇の上限")] float _maxSpeed = 40f;
+    Rigidbody _rb = default;
+
+    #region"プロパティ"
+    public float DefaultSpeed { get => _defaultSpeed; }
+    public float Speed { get => _speed; set => _speed = value; }
+
+    public float MaxSpeed { get => _maxSpeed; }
+    #endregion
+
 
     void Start()
     {
@@ -36,8 +45,8 @@ public class MovePlayer : MonoBehaviour
     {
         _count = 0;
         Speed = _defaultSpeed;
-        _isResetSpeed = false;
         _timer = 0;
+        _rb = GetComponent<Rigidbody>();
     }
 
     /// <summary>
@@ -51,12 +60,17 @@ public class MovePlayer : MonoBehaviour
     void FixedUpdate()
     {
         if (_isMove) transform.Translate(Speed * Time.deltaTime * Vector3.forward);
-        if (Speed > _defaultSpeed) _trailRenderer.enabled = true; //描画
-        else _trailRenderer.enabled = false;
+        //if (Speed > _defaultSpeed) _trailRenderer.enabled = true; //描画
+        //else _trailRenderer.enabled = false;
+        Debug.Log("speed : " + Speed);
     }
 
     void Update()
     {
+        if (GM.Instance._isPause)
+            _rb.isKinematic = true;
+        else _rb.isKinematic = false;
+
         //落下死
         if (transform.position.y <= -3)
         {

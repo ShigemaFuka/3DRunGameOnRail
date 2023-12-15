@@ -28,7 +28,7 @@ public class PlayerHp : MonoBehaviour
         {
             return;
         }
-        if(!GM.Instance._isPause)
+        if(GM.Instance._isPause)
         {
             return;
         }
