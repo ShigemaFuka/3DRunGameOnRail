@@ -36,6 +36,8 @@ public class Falling : MonoBehaviour
             if (_useRb) Kinema();
             else Fall();
         }
+        if (transform.position.y <= _limit)
+            _rb.isKinematic = true;
     }
 
     void OnCollisionEnter(Collision coll)
