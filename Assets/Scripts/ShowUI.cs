@@ -14,11 +14,12 @@ public class ShowUI : MonoBehaviour
 
     void Update()
     {
-        if (GM.Instance._isPause == true)
-        {
-            _target.SetActive(true);
-        }
-        else
-            _target.SetActive(false);
+        //if (GM.Instance._isPause == true)
+        //{
+        //    _target.SetActive(true);
+        //}
+        //else
+        //    _target.SetActive(false);
+        _target.SetActive(GM.Instance._isPause);
     }
 }

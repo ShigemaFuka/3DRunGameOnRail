@@ -60,9 +60,6 @@ public class MovePlayer : MonoBehaviour
     void FixedUpdate()
     {
         if (_isMove) transform.Translate(Speed * Time.deltaTime * Vector3.forward);
-        //if (Speed > _defaultSpeed) _trailRenderer.enabled = true; //•`‰æ
-        //else _trailRenderer.enabled = false;
-        Debug.Log("speed : " + Speed);
     }
 
     void Update()

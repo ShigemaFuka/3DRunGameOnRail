@@ -8,8 +8,13 @@ public class PlayerHp : MonoBehaviour
 {
     [SerializeField, Tooltip("最大HP")] int _maxHp = 3;
     [Tooltip("現在のHP")] static int _nowHp = 0;
-    public int NowHp { get => _nowHp; set => _nowHp = value; }
     [SerializeField] Text _hpText = null;
+    [Tooltip("接触したのが敵か")] int _isEnemy = 0;
+
+    #region"プロパティ"
+    public int NowHp { get => _nowHp; set => _nowHp = value; }
+    public int IsEnemy { get => _isEnemy; }
+    #endregion
 
     void OnEnable()
     {
@@ -19,6 +24,11 @@ public class PlayerHp : MonoBehaviour
 
     void Update()
     {
+        if (_nowHp == 1)
+        {
+            Debug.Log("残りHP：" + _nowHp);
+        }
+
         // 以下 早期リターンしている
         // 利点
         // １）ネストが深くならない
@@ -48,5 +58,8 @@ public class PlayerHp : MonoBehaviour
     {
         _nowHp += value;
         _hpText.text = _nowHp.ToString("00");
+        //敵キャラのとき
+        //if (value < 0)
+        //    IsEnemy = true;
     }
 }
