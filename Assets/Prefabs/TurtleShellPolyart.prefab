@@ -991,6 +991,7 @@ MonoBehaviour:
   _effect: {fileID: 5573876837594559368, guid: f31a0343a52b98f43810d14740ea8fba, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: -1
+  _gameObject: {fileID: 3721481411562917950, guid: 78b1db4f514d40541846cbb6aefc062d, type: 3}
 --- !u!82 &2758279441923115929
 AudioSource:
   m_ObjectHideFlags: 0

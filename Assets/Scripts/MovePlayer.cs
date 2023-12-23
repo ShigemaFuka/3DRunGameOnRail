@@ -28,6 +28,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("速度上昇の上限")] float _maxSpeed = 40f;
     Rigidbody _rb = default;
 
+
     #region"プロパティ"
     public float DefaultSpeed { get => _defaultSpeed; }
     public float Speed { get => _speed; set => _speed = value; }
@@ -64,6 +65,11 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        if (GM.Instance._isInvincible)
+            gameObject.tag = "Invincible";
+        else
+            gameObject.tag = "Player";
+
         if (GM.Instance._isPause)
             _rb.isKinematic = true;
         else _rb.isKinematic = false;

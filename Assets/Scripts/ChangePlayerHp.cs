@@ -6,6 +6,7 @@ using UnityEngine;
 public class ChangePlayerHp : ItemBase
 {
     [SerializeField, Tooltip("増減する量")] int _value = 1;
+    [SerializeField, Tooltip("吹き飛ぶアニメーションのモデル")] GameObject _gameObject = default;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,13 @@ public class ChangePlayerHp : ItemBase
         {
             other.GetComponent<PlayerHp>().ChangeNowHp(_value);
             PlayEffectAndSE();
+            SetPosition();
+        }
+        if (other.gameObject.CompareTag("Invincible"))
+        {
+            // HP減少が無効化
+            if (_value > 0) other.GetComponent<PlayerHp>().ChangeNowHp(_value);
+            if(_gameObject) Instantiate(_gameObject, transform.position, Quaternion.identity);
             SetPosition();
         }
     }

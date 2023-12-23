@@ -10,7 +10,7 @@ public class ScoreController : ItemBase
     /// <param name="coll"></param>
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Invincible"))
         {
             GM.Instance.ChangeScore(_score);
             PlayEffectAndSE();

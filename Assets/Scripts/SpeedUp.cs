@@ -11,7 +11,7 @@ public class SpeedUp : ItemBase
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Invincible"))
         {
             var movePlayer = coll.GetComponent<MovePlayer>();
             movePlayer._timer = 0; //最後に取得したタイミングから、カウント開始

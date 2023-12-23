@@ -3,8 +3,9 @@ using UnityEngine;
 public class ItemBase : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource = default;
-    [SerializeField] GameObject _effect;
-    [SerializeField, Tooltip("ギミックのCollectを呼ぶオブジェクト")] GameObject _collectGimmickObject;
+    [SerializeField] GameObject _effect = default;
+    //[SerializeField, Tooltip("吹き飛ぶアニメーションのモデル")] protected bool _isKnockOut = default;
+    [SerializeField, Tooltip("ギミックのCollectを呼ぶオブジェクト")] GameObject _collectGimmickObject = default;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class ItemBase : MonoBehaviour
     /// Collect関数を呼ぶコライダーつきのオブジェクト付近かつ、
     /// カメラに映らない位置に移動させる
     /// </summary>
-    public void SetPosition()
+    protected void SetPosition()
     {
         //デフォルトでGimmickのタグが付いている
         //それが付いていないアイテムや敵キャラのオブジェクトについては、スポーン時に別のタグに更新されているから
