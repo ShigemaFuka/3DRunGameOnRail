@@ -13,24 +13,27 @@ public class ChangeTrailRenderer : MonoBehaviour
         if (_movePlayer.Speed > _movePlayer.DefaultSpeed)
         {
             _trailRenderer.enabled = true; //•`‰æ
-            if (_movePlayer.Speed >= _movePlayer.MaxSpeed)
+            if (_movePlayer.Speed >= _movePlayer.MaxSpeed) // ˆê”Ô‘¬“x‚ª‘‚¢
             {
                 Change(Color.red);
+                GM.Instance._isInvincible = true;
             }
             else if (_movePlayer.Speed >= (_movePlayer.MaxSpeed / 2))
             {
                 Change(Color.blue + Color.red);
+                GM.Instance._isInvincible = false;
             }
             else if (_movePlayer.Speed >= (_movePlayer.MaxSpeed / 4))
             {
                 Change(Color.blue);
+                GM.Instance._isInvincible = false;
             }
         }
         else
         {
             _trailRenderer.enabled = false;
+            GM.Instance._isInvincible = false;
         }
-        GM.Instance._isInvincible = _trailRenderer.enabled;
     }
 
     /// <summary>

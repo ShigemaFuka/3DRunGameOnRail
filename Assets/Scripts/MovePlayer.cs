@@ -20,7 +20,7 @@ public class MovePlayer : MonoBehaviour
     readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
     [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
     [Tooltip("速度を戻すまでの時間の経過")] public float _timer = 0f;
-    [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 5f;
+    [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 1f;
     //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
 
     [SerializeField, Header("正数で良い"), Tooltip("プラマイでｘ軸の移動範囲")] float _xRange = 2.0f;

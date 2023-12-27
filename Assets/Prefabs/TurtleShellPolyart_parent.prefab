@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 1835889248841355897}
   _effect: {fileID: 5573876837594559368, guid: f31a0343a52b98f43810d14740ea8fba, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: -1
