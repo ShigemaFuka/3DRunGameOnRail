@@ -83,7 +83,7 @@ public class GM : MonoBehaviour
     {
         _onGameOverEvent.Invoke();
         _inGame = false;
-        _isInvincible = true;
+        //_isInvincible = true;
         Debug.Log("GameOver");
     }
 

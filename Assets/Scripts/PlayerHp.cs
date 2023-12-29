@@ -8,8 +8,9 @@ public class PlayerHp : MonoBehaviour
 {
     [SerializeField, Tooltip("最大HP")] int _maxHp = 3;
     [Tooltip("現在のHP")] static int _nowHp = 0;
-    [SerializeField] Text _hpText = null;
+    [SerializeField] Text _hpText = default;
     [Tooltip("接触したのが敵か")] int _isEnemy = 0;
+    [SerializeField, Tooltip("UIのAnim")] Animator _HpUIanimator = default;
 
     #region"プロパティ"
     public int NowHp { get => _nowHp; set => _nowHp = value; }
@@ -26,8 +27,10 @@ public class PlayerHp : MonoBehaviour
     {
         if (_nowHp == 1)
         {
-            Debug.Log("残りHP：" + _nowHp);
+            _HpUIanimator.SetBool("Hp0", true);
         }
+        else
+            _HpUIanimator.SetBool("Hp0", false);
 
         // 以下 早期リターンしている
         // 利点
