@@ -17,7 +17,7 @@ public class Invincible : MonoBehaviour
 
     void Update()
     {
-        if (GM.Instance._isInvincible && GM.Instance._inGame)
+        if (GM.Instance._isInvincible && GM.Instance._inGame && !GM.Instance._isPause)
         {
             _audioSource.pitch = _pitch;
             _animator.SetBool("Invincible", true);

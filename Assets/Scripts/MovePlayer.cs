@@ -89,16 +89,17 @@ public class MovePlayer : MonoBehaviour
         if (_isMove)
         {
             if (_isTransform) Move2();
-                //Move();
-        }
-        //一定時間経過したら、速度を戻す
-        if (Speed != _defaultSpeed)
-        {
-            _timer += Time.deltaTime;
-            if (_timer >= _resetTime)
+            //Move();
+
+            //一定時間経過したら、速度を戻す
+            if (Speed != _defaultSpeed)
             {
-                Speed = _defaultSpeed;
-                _timer = 0;
+                _timer += Time.deltaTime;
+                if (_timer >= _resetTime)
+                {
+                    Speed = _defaultSpeed;
+                    _timer = 0;
+                }
             }
         }
     }
