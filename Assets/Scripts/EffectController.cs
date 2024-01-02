@@ -5,6 +5,10 @@ public class EffectController : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static EffectController Instance = default;
     [SerializeField] EffectClass[] _effectClass = default;
+    [SerializeField] AudioSource _seAudio = default;
+    //[SerializeField]
+    //private AudioSource _bgmAudio;
+    [SerializeField] SeClass[] _seClass = default;
 
     void Awake()
     {
@@ -29,17 +33,27 @@ public class EffectController : MonoBehaviour
         data?.ParticleSystem?.Play();
     }
 
+    public void SePlay(SeClass.SE se)
+    {
+        SeClass data = null;
+        foreach (var playSe in _seClass)
+        {
+            if (playSe.SeState != se) continue;
+            data = playSe;
+            break;
+        }
+        _seAudio?.PlayOneShot(data?.SeClip);
+    }
+
     [Serializable]
     public class EffectClass
     {
-        //[SerializeField] AudioClip _seClip;
-        //public AudioClip SeClip => _seClip;
         [SerializeField] ParticleSystem _particleSystem;
+        [SerializeField] Effect _effectState;
+        #region
         public ParticleSystem ParticleSystem => _particleSystem;
-
-        [SerializeField]
-        Effect _effectState;
         public Effect EffectState => _effectState;
+        #endregion
 
         public enum Effect
         {
@@ -49,6 +63,25 @@ public class EffectController : MonoBehaviour
             Crash,
             Fever,
             Ring
+        }
+    }
+
+    [Serializable]
+    public class SeClass
+    {
+        [SerializeField] AudioClip _seClip;
+        [SerializeField] SE _seState;
+        #region
+        public AudioClip SeClip => _seClip;
+        public SE SeState => _seState;
+        #endregion
+
+        public enum SE
+        {
+            GetItem,
+            Damage,
+            Recovery,
+            SpeedUp
         }
     }
 }
