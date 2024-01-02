@@ -13,14 +13,24 @@ public class ChangePlayerHp : ItemBase
         if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<PlayerHp>().ChangeNowHp(_value);
-            PlayEffectAndSE();
+            //PlayEffectAndSE();
+            if (_value > 0)
+            {
+                EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Heart);
+                EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Ring);
+            }
             SetPosition();
         }
         if (other.gameObject.CompareTag("Invincible"))
         {
             // HPŒ¸­‚ª–³Œø‰»
-            if (_value > 0) other.GetComponent<PlayerHp>().ChangeNowHp(_value);
-            if(_gameObject) Instantiate(_gameObject, transform.position, Quaternion.identity);
+            if (_value > 0)
+            {
+                other.GetComponent<PlayerHp>().ChangeNowHp(_value);
+                EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Heart);
+                EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Ring);
+            }
+            if (_gameObject) Instantiate(_gameObject, transform.position, Quaternion.identity);
             SetPosition();
         }
     }

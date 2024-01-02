@@ -26,7 +26,7 @@ public class EffectController : MonoBehaviour
             break;
         }
         //_seAudio?.PlayOneShot(data?.SeClip);
-        data?.ParticleSystem.Play();
+        data?.ParticleSystem?.Play();
     }
 
     [Serializable]
@@ -47,7 +47,8 @@ public class EffectController : MonoBehaviour
             SeedUp,
             Heart,
             Crash,
-            Fever
+            Fever,
+            Ring
         }
     }
 }
