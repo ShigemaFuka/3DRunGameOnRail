@@ -16,7 +16,9 @@ public class SpeedUp : ItemBase
             var movePlayer = coll.GetComponent<MovePlayer>();
             movePlayer._timer = 0; //最後に取得したタイミングから、カウント開始
             if(movePlayer.Speed < movePlayer.MaxSpeed) movePlayer.Speed = ToSpeedUp(movePlayer.Speed);
-            PlayEffectAndSE();
+            //PlayEffectAndSE();
+            EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.SeedUp);
+            EffectController.Instance.SePlay(EffectController.SeClass.SE.SpeedUp);
             SetPosition();
         }
     }

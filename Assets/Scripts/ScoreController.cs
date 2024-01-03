@@ -13,8 +13,10 @@ public class ScoreController : ItemBase
         if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Invincible"))
         {
             GM.Instance.ChangeScore(_score);
-            PlayEffectAndSE();
+            //PlayEffectAndSE();
             SetPosition();
+            EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Coin);
+            EffectController.Instance.SePlay(EffectController.SeClass.SE.GetItem);
         }
     }
 }

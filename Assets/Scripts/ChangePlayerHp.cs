@@ -18,6 +18,12 @@ public class ChangePlayerHp : ItemBase
             {
                 EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Heart);
                 EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Ring);
+                EffectController.Instance.SePlay(EffectController.SeClass.SE.Recovery);
+            }
+            else
+            {
+                EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Crash);
+                EffectController.Instance.SePlay(EffectController.SeClass.SE.Damage);
             }
             SetPosition();
         }
@@ -29,6 +35,7 @@ public class ChangePlayerHp : ItemBase
                 other.GetComponent<PlayerHp>().ChangeNowHp(_value);
                 EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Heart);
                 EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Ring);
+                EffectController.Instance.SePlay(EffectController.SeClass.SE.Recovery);
             }
             if (_gameObject) Instantiate(_gameObject, transform.position, Quaternion.identity);
             SetPosition();
