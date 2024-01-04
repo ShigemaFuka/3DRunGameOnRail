@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8522721024983589991}
   m_Layer: 0
   m_Name: Stand
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,10 +283,8 @@ MonoBehaviour:
   m_VersionIndex: 3247
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 8
-    b: 9
-  m_SelectedVertices: 0800000009000000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &8522721024983589994
 MonoBehaviour:
   m_ObjectHideFlags: 0

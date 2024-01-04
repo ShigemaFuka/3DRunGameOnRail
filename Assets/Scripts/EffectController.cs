@@ -4,8 +4,8 @@ using UnityEngine;
 public class EffectController : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static EffectController Instance = default;
-    [SerializeField] EffectClass[] _effectClass = default;
     [SerializeField] AudioSource _seAudio = default;
+    [SerializeField] EffectClass[] _effectClass = default;
     //[SerializeField]
     //private AudioSource _bgmAudio;
     [SerializeField] SeClass[] _seClass = default;
@@ -30,7 +30,7 @@ public class EffectController : MonoBehaviour
             break;
         }
         //_seAudio?.PlayOneShot(data?.SeClip);
-        data?.ParticleSystem?.Play();
+        data?.ParticleSystem.Play();
     }
 
     public void SePlay(SeClass.SE se)
@@ -42,7 +42,7 @@ public class EffectController : MonoBehaviour
             data = playSe;
             break;
         }
-        _seAudio?.PlayOneShot(data?.SeClip);
+        _seAudio?.PlayOneShot(data?.SeClip, data.Volume);
     }
 
     [Serializable]
@@ -71,9 +71,11 @@ public class EffectController : MonoBehaviour
     {
         [SerializeField] AudioClip _seClip;
         [SerializeField] SE _seState;
+        [SerializeField] float _volume;
         #region
         public AudioClip SeClip => _seClip;
         public SE SeState => _seState;
+        public float Volume => _volume;
         #endregion
 
         public enum SE
