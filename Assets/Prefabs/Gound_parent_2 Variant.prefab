@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1172098275152317854}
   m_Layer: 0
   m_Name: Stand
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67814,7 +67814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7676591753666884981, guid: 6cc99cc609688034485cab2c23df5501, type: 3}
       propertyPath: m_Name
-      value: Gound_parent_2
+      value: Gound_parent_2 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cc99cc609688034485cab2c23df5501, type: 3}

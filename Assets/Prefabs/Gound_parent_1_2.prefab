@@ -73609,6 +73609,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ca2504c00c43f34a93a570114405ad8, type: 2}
+    - target: {fileID: 8522721024983589990, guid: 77889b9f5174065428d9a2a7e3018cce, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8522721024983589991, guid: 77889b9f5174065428d9a2a7e3018cce, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -73616,6 +73620,10 @@ PrefabInstance:
     - target: {fileID: 8522721024983589995, guid: 77889b9f5174065428d9a2a7e3018cce, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522721024983589995, guid: 77889b9f5174065428d9a2a7e3018cce, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3256
       objectReference: {fileID: 0}
     - target: {fileID: 8522721024983589995, guid: 77889b9f5174065428d9a2a7e3018cce, type: 3}
       propertyPath: m_SelectedEdges.Array.size
