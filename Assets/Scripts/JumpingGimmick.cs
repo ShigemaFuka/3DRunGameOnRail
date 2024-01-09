@@ -13,6 +13,7 @@ public class JumpingGimmick : MonoBehaviour
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce((Vector3.up + Vector3.forward) * _power, ForceMode.Impulse);
             //音とアニメーションを追加したい
+            EffectController.Instance.SePlay(EffectController.SeClass.SE.JumpingStand);
         }
     }
 }

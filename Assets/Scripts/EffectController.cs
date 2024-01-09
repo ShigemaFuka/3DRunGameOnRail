@@ -83,7 +83,9 @@ public class EffectController : MonoBehaviour
             GetItem,
             Damage,
             Recovery,
-            SpeedUp
+            SpeedUp,
+            JumpingStand,
+            Jump
         }
     }
 }
