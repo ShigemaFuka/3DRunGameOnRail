@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -133,6 +132,9 @@ public class MovePlayer : MonoBehaviour
             _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
         else if (_count == -1)
             _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
+        //¶‰E‚ÌãŒÀ‚ð’´‚¦‚½‚Æ‚«‚ÌC³i’²®j
+        if(transform.position.x > _x) _changedPos.x = _x;
+        else if(transform.position.x < -_x) _changedPos.x = -_x;
         gameObject.transform.position = _changedPos;
     }
 
