@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
 
     readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
     [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
-    [Tooltip("速度を戻すまでの時間の経過")] public float _timer = 0f;
+    [Tooltip("速度を戻すまでの時間の経過")] float _timer = 0f;
     [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 1f;
     //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
 
@@ -27,25 +27,24 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("速度上昇の上限")] float _maxSpeed = 40f;
     Rigidbody _rb = default;
 
-
     #region"プロパティ"
     public float DefaultSpeed { get => _defaultSpeed; }
     public float Speed { get => _speed; set => _speed = value; }
 
     public float MaxSpeed { get => _maxSpeed; }
+    public float Timer { get => _timer; set => _timer = value; }
     #endregion
-
 
     void Start()
     {
         Initialize();
     }
 
-    private void Initialize()
+    void Initialize()
     {
         _count = 0;
         Speed = _defaultSpeed;
-        _timer = 0;
+        Timer = 0;
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -93,11 +92,11 @@ public class MovePlayer : MonoBehaviour
             //一定時間経過したら、速度を戻す
             if (Speed != _defaultSpeed)
             {
-                _timer += Time.deltaTime;
-                if (_timer >= _resetTime)
+                Timer += Time.deltaTime;
+                if (Timer >= _resetTime)
                 {
                     Speed = _defaultSpeed;
-                    _timer = 0;
+                    Timer = 0;
                 }
             }
         }

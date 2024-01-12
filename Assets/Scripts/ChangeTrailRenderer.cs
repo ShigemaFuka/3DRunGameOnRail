@@ -21,12 +21,12 @@ public class ChangeTrailRenderer : MonoBehaviour
             else if (_movePlayer.Speed >= (_movePlayer.MaxSpeed / 2))
             {
                 Change(Color.blue + Color.red);
-                GM.Instance._isInvincible = false;
+                //GM.Instance._isInvincible = false;
             }
             else if (_movePlayer.Speed >= (_movePlayer.MaxSpeed / 4))
             {
                 Change(Color.blue);
-                GM.Instance._isInvincible = false;
+                //GM.Instance._isInvincible = false;
             }
         }
         else

@@ -11,7 +11,7 @@ public class Invincible : MonoBehaviour
     [SerializeField] Animator _animator = default;
     void Start()
     {
-        if(_audioSource) _defaultPitch = _audioSource.pitch;
+        _defaultPitch = _audioSource.pitch;
         _animator.SetBool("Invincible", false);
     }
 
