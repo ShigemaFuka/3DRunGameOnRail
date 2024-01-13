@@ -21,6 +21,7 @@ public class GM : MonoBehaviour
     [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
     [Tooltip("プレイヤーの無敵化")] public bool _isInvincible = false;
     [Tooltip("ジャンプ台に接触したか")] bool _jumpingStand = false;
+    [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] float _timer = 0f;
 
     #region"プロパティ"
     //↑プロパティをまとめておいて、開閉することでコード全体を見やすくする
@@ -29,6 +30,7 @@ public class GM : MonoBehaviour
     //↑こうしておくと、GMを参照すればそのクラスを利用できる
     public int Score { get => _score; set => _score = value; }
     public bool JumpingStand { get => _jumpingStand; set => _jumpingStand = value; }
+    public float Timer { get => _timer; set => _timer = value; }
     #endregion
 
     void Awake()
@@ -71,6 +73,7 @@ public class GM : MonoBehaviour
             FlagChange(1);
             FlagChange(2);
         }
+        Debug.Log("Time : " + Timer);
     }
 
     /// <summary>
