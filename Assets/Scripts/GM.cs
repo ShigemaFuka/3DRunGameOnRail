@@ -73,7 +73,6 @@ public class GM : MonoBehaviour
             FlagChange(1);
             FlagChange(2);
         }
-        Debug.Log("Time : " + Timer);
     }
 
     /// <summary>
