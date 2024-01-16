@@ -30,10 +30,15 @@ public class JumpController : MonoBehaviour
             {
                 EffectController.Instance.SePlay(EffectController.SeClass.SE.Jump);
                 _animator.SetTrigger("JumpTri");
-                _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+                Vector3 velocity = _rb.velocity;
+                velocity.y = _jumpPower;
+                _rb.velocity = velocity;
+
+                //_rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 _isJump = false;
             }
         }
+
     }
 
     private void OnCollisionEnter(Collision coll)
