@@ -11,7 +11,13 @@ public class JumpingGimmick : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Invincible"))
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce((Vector3.up + Vector3.forward) * _power, ForceMode.Impulse);
+            var rb = other.gameObject.GetComponent<Rigidbody>();
+            //rb.AddForce((Vector3.up + Vector3.forward) * _power, ForceMode.Impulse);
+            Vector3 velocity = rb.velocity;
+            velocity.y = _power;
+            velocity.z = _power;
+            rb.velocity = velocity;
+
             //音とアニメーションを追加したい
             EffectController.Instance.SePlay(EffectController.SeClass.SE.JumpingStand);
             GM.Instance.JumpingStand = true;
