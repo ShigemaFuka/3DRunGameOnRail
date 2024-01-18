@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// エフェクト(パーティクルシステム)、BGM、SEを再生する
+/// </summary>
 public class EffectController : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static EffectController Instance = default;
     [SerializeField] AudioSource _seAudio = default;
-    [SerializeField] EffectClass[] _effectClass = default;
-    //[SerializeField]
-    //private AudioSource _bgmAudio;
+    [SerializeField, Tooltip("パーティクルシステムなどのエフェクト")] EffectClass[] _effectClass = default;
+    [SerializeField] AudioSource _bgmAudio = default;
     [SerializeField] SeClass[] _seClass = default;
+    [SerializeField] BgmClass[] _bgmClass;
 
     void Awake()
     {
@@ -43,6 +46,19 @@ public class EffectController : MonoBehaviour
             break;
         }
         _seAudio?.PlayOneShot(data?.SeClip, data.Volume);
+    }
+
+    public void BgmPlay(BgmClass.BGM bgm)
+    {
+        BgmClass data = null;
+        foreach (var playSe in _bgmClass)
+        {
+            if (playSe.BgmState != bgm) continue;
+            data = playSe;
+            break;
+        }
+        _bgmAudio.clip = data?.BgmClip;
+        _bgmAudio.Play();
     }
 
     [Serializable]
@@ -86,6 +102,26 @@ public class EffectController : MonoBehaviour
             SpeedUp,
             JumpingStand,
             Jump
+        }
+    }
+
+    [Serializable]
+    public class BgmClass
+    {
+        [SerializeField] AudioClip _bgmClip;
+        [SerializeField] BGM _bgmState;
+        [SerializeField] float _volume;
+
+        #region
+        public AudioClip BgmClip => _bgmClip;
+        public BGM BgmState => _bgmState;
+        public float Volume => _volume;
+        #endregion
+
+        public enum BGM
+        {
+            Basic,
+            GameOver
         }
     }
 }
