@@ -8,8 +8,8 @@ public class EffectController : MonoBehaviour
 {
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static EffectController Instance = default;
     [SerializeField] AudioSource _seAudio = default;
-    [SerializeField, Tooltip("パーティクルシステムなどのエフェクト")] EffectClass[] _effectClass = default;
     [SerializeField] AudioSource _bgmAudio = default;
+    [SerializeField, Tooltip("パーティクルシステムなどのエフェクト")] EffectClass[] _effectClass = default;
     [SerializeField] SeClass[] _seClass = default;
     [SerializeField] BgmClass[] _bgmClass;
 
@@ -58,6 +58,7 @@ public class EffectController : MonoBehaviour
             break;
         }
         _bgmAudio.clip = data?.BgmClip;
+        _bgmAudio.volume = data.Volume;
         _bgmAudio.Play();
     }
 
@@ -120,7 +121,7 @@ public class EffectController : MonoBehaviour
 
         public enum BGM
         {
-            Basic,
+            InGame,
             GameOver
         }
     }
