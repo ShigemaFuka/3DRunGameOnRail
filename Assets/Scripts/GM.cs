@@ -49,15 +49,17 @@ public class GM : MonoBehaviour
         _onStartEvent.Invoke();
         _isPause = false;
         JumpingStand = false;
+        EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
     }
 
     void Update()
     {
         //リスタート
-        if (Input.GetKeyDown(KeyCode.Return)&& !_inGame)
+        if (Input.GetKeyDown(KeyCode.Return) && !_inGame)
         {
             _inGameEvent.Invoke();
             _inGame = true;
+            EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
         }
         //ポーズ画面
         else if (Input.GetKeyDown(KeyCode.Tab))
@@ -88,6 +90,7 @@ public class GM : MonoBehaviour
     {
         _onGameOverEvent.Invoke();
         _inGame = false;
+        EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.GameOver);
         //_isInvincible = true;
         Debug.Log("GameOver");
     }
