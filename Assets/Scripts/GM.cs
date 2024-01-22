@@ -19,6 +19,7 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _onGameOverEvent = default;
     public bool _inGame = false;
     [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
+    bool _inGameOver = false;
     [Tooltip("プレイヤーの無敵化")] public bool _isInvincible = false;
     [Tooltip("ジャンプ台に接触したか")] bool _jumpingStand = false;
     [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] float _timer = 0f;
@@ -54,12 +55,13 @@ public class GM : MonoBehaviour
 
     void Update()
     {
-        //リスタート
+        //スタート・リスタート
         if (Input.GetKeyDown(KeyCode.Return) && !_inGame)
         {
             _inGameEvent.Invoke();
+            // 以下はリスタート時のBGM再生
+            if(_inGameOver) EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
             _inGame = true;
-            EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
         }
         //ポーズ画面
         else if (Input.GetKeyDown(KeyCode.Tab))
@@ -90,6 +92,7 @@ public class GM : MonoBehaviour
     {
         _onGameOverEvent.Invoke();
         _inGame = false;
+        _inGameOver = !_inGame;
         EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.GameOver);
         //_isInvincible = true;
         Debug.Log("GameOver");
