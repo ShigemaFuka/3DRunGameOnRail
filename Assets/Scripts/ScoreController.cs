@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public class ScoreController : ItemBase
+public class ScoreController : ItemBase, IPull
 {
     [SerializeField, Tooltip("加算するスコア")] int _score = 5;
+    GameObject _playerObject = default;
+    public void PullItem(float speed)
+    {
+        if (!_playerObject) _playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (_playerObject) transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, speed);
+    }
 
     /// <summary>
     /// Playerタグのオブジェクトに接触したら、GMのAddScore関数で加算し、自身を非表示にする
