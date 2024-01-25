@@ -6,7 +6,6 @@ public class ItemBase : MonoBehaviour
     //[SerializeField] GameObject _effect = default;
     //[SerializeField, Tooltip("吹き飛ぶアニメーションのモデル")] protected bool _isKnockOut = default;
     [SerializeField, Tooltip("ギミックのCollectを呼ぶオブジェクト")] GameObject _collectGimmickObject = default;
-
     void Start()
     {
         _collectGimmickObject = GameObject.Find("CollectGimmicks");

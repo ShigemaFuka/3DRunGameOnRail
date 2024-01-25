@@ -1,13 +1,23 @@
 using UnityEngine;
 
-public class ScoreController : ItemBase, IPull
+public class ChangeScore : ItemBase, IPull
 {
     [SerializeField, Tooltip("加算するスコア")] int _score = 5;
     GameObject _playerObject = default;
+    [Tooltip("到達したか")] bool _isReach = false;
     public void PullItem(float speed)
     {
         if (!_playerObject) _playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (_playerObject) transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, speed);
+        if (_playerObject && !_isReach)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, speed);
+            float distance = Vector3.Distance(_playerObject.transform.position, transform.position);
+            if (distance <= 0.5)
+            {
+                _isReach = true;
+                Debug.Log("isReach : " + _isReach);
+            }
+        }
     }
 
     /// <summary>

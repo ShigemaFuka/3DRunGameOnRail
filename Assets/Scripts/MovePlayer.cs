@@ -11,21 +11,20 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove = default;
     [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0f;
-    [Tooltip("現在のスピード")] static float _speed = 0f;
-    [SerializeField, Tooltip("X軸方向への移動範囲")] float _x = 3f;
+    [Tooltip("現在のスピード")] /*static*/ float _speed = 0f;
+    [SerializeField, Tooltip("プラマイでX軸方向への移動範囲")] float _xRange = 3f;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos = default;
-    [SerializeField] int _count = 0;
-
+    int _count = 0;
     readonly WaitForSeconds _wfs = new WaitForSeconds(0.5f);
-    [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
-    //[Tooltip("速度を戻すまでの時間の経過")] float _timer = 0f;
     [SerializeField, Tooltip("速度を戻すまでの時間")] float _resetTime = 1f;
-    //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
-
-    [SerializeField, Header("正数で良い"), Tooltip("プラマイでｘ軸の移動範囲")] float _xRange = 2.0f;
-    [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed = 7f;
     [SerializeField, Tooltip("速度上昇の上限")] float _maxSpeed = 40f;
+    [Header("左右移動")]
+    [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
+    [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed = 7f;
     Rigidbody _rb = default;
+    //[Tooltip("速度を戻すまでの時間の経過")] float _timer = 0f;
+    //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
+    //[SerializeField, Header("正数で良い"), Tooltip("ｘ軸の移動範囲")] float _xRange = 2.0f;
 
     #region"プロパティ"
     public float DefaultSpeed { get => _defaultSpeed; }
@@ -127,14 +126,14 @@ public class MovePlayer : MonoBehaviour
             }
         }
         if (_count == 1)
-            _changedPos = new Vector3(_x, gameObject.transform.position.y, gameObject.transform.position.z);
+            _changedPos = new Vector3(_xRange, gameObject.transform.position.y, gameObject.transform.position.z);
         else if (_count == 0)
             _changedPos = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
         else if (_count == -1)
-            _changedPos = new Vector3(-_x, gameObject.transform.position.y, gameObject.transform.position.z);
+            _changedPos = new Vector3(-_xRange, gameObject.transform.position.y, gameObject.transform.position.z);
         //左右の上限を超えたときの修正（調整）
-        if(transform.position.x > _x) _changedPos.x = _x;
-        else if(transform.position.x < -_x) _changedPos.x = -_x;
+        if (transform.position.x > _xRange) _changedPos.x = _xRange;
+        else if (transform.position.x < -_xRange) _changedPos.x = -_xRange;
         gameObject.transform.position = _changedPos;
     }
 

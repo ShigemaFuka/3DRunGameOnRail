@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class SetActiveChildren : MonoBehaviour
 {
-    [SerializeField] List<Transform> _childrenTransform = null;
+    [SerializeField, Tooltip("子オブジェクト内のギミック")] List<Transform> _childrenTransform = default;
+    [SerializeField, Tooltip("位置の情報")] List<Vector3> _childrenVector3 = default;
     bool _hasChildren;
 
     void Start()
@@ -22,9 +23,14 @@ public class SetActiveChildren : MonoBehaviour
     {
         if (_hasChildren)
         {
-            foreach (var childTransform in _childrenTransform)
+            //foreach (var childTransform in _childrenTransform)
+            //{
+            //    childTransform.gameObject.SetActive(true);
+            //}
+            for (var i = 0; i < _childrenTransform.Count; i++)
             {
-                childTransform.gameObject.SetActive(true);
+                _childrenTransform[i].gameObject.SetActive(true);
+                _childrenTransform[i].gameObject.transform.position = _childrenVector3[i];
             }
         }
     }
@@ -39,7 +45,10 @@ public class SetActiveChildren : MonoBehaviour
         {
             var child = transform.GetChild(i);
             if (child.CompareTag("Gimmick"))
+            {
                 _childrenTransform.Add(child);
+                _childrenVector3.Add(child.transform.position);
+            }
         }
         _hasChildren = true;
     }

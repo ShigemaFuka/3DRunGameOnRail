@@ -88,15 +88,15 @@ public class GM : MonoBehaviour
             FlagChange(0);
             FlagChange(1);
             FlagChange(2);
-        }
-        // 時限式 マグネット機能停止
-        if (IsPullItem)
-        {
-            _pullTimer += Time.deltaTime;
-            if (_pullTimer >= _pullLimit)
+            // 時限式 マグネット機能停止
+            if (IsPullItem)
             {
-                IsPullItem = false;
-                _pullTimer = 0;
+                _pullTimer += Time.deltaTime;
+                if (_pullTimer >= _pullLimit)
+                {
+                    IsPullItem = false;
+                    _pullTimer = 0;
+                }
             }
         }
     }

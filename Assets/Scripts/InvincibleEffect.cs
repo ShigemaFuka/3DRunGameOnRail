@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// 無敵状態のときに、UIとBGM再生
 /// </summary>
-public class Invincible : MonoBehaviour
+public class InvincibleEffect : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource = default;
     [SerializeField,Tooltip("高くするピッチの値")] float _pitch = default;
