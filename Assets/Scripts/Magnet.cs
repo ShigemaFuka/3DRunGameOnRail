@@ -12,8 +12,7 @@ public class Magnet : ItemBase
             GM.Instance.IsPullItem = true;
             SetPosition();
             EffectController.Instance.SePlay(EffectController.SeClass.SE.GetItem);
-            // マグネット用のパーティクルシステムを出したい
-            //EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Coin);
+            EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Magnet);
         }
     }
 }

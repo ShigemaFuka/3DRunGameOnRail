@@ -18,7 +18,7 @@ public class CollectGimmicks : MonoBehaviour
             if (other.gameObject.CompareTag(item.name))
             {
                 var opi = item.GetComponent<ObjectPoolItem>();
-                opi.Collect(other.gameObject); 
+                opi.Collect(other.gameObject);
                 //‚±‚ê‚Åæ‚èo‚µ‚½‚Ì‚Æ“¯‚¶Queue‚ÉŠi”[‚Å‚«‚é
             }
         }

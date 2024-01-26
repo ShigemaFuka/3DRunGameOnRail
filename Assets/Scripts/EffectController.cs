@@ -79,7 +79,8 @@ public class EffectController : MonoBehaviour
             Heart,
             Crash,
             Fever,
-            Ring
+            Ring,
+            Magnet
         }
     }
 

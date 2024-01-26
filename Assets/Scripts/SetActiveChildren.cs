@@ -30,7 +30,7 @@ public class SetActiveChildren : MonoBehaviour
             for (var i = 0; i < _childrenTransform.Count; i++)
             {
                 _childrenTransform[i].gameObject.SetActive(true);
-                _childrenTransform[i].gameObject.transform.position = _childrenVector3[i];
+                _childrenTransform[i].gameObject.transform.localPosition = _childrenVector3[i];
             }
         }
     }
@@ -47,9 +47,10 @@ public class SetActiveChildren : MonoBehaviour
             if (child.CompareTag("Gimmick"))
             {
                 _childrenTransform.Add(child);
-                _childrenVector3.Add(child.transform.position);
+                _childrenVector3.Add(child.transform.localPosition);
             }
         }
         _hasChildren = true;
+        //Debug.Log(_hasChildren);
     }
 }

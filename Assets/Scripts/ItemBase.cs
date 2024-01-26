@@ -27,11 +27,17 @@ public class ItemBase : MonoBehaviour
     {
         //デフォルトでGimmickのタグが付いている
         //それが付いていないアイテムや敵キャラのオブジェクトについては、スポーン時に別のタグに更新されているから
-        if (gameObject.CompareTag("Gimmick"))
-        {
-            gameObject.SetActive(false);
-        }
-        //スポーンされるオブジェクト カメラに映らないところで格納する
-        else gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 10);
+        //if (gameObject.CompareTag("Gimmick"))
+        //{
+        //    gameObject.transform.position = gameObject.transform.position + new Vector3(0, 0, 20);
+        //    gameObject.SetActive(false);
+        //}
+        ////スポーンされるオブジェクト カメラに映らないところで格納する
+        //else
+            //gameObject.transform.position = _collectGimmickObject.transform.position + new Vector3(0, 0, 10);
+        
+
+        // ギミック（地面のプレハブの子オブジェクト・スポーンされるもの）をカメラの後ろへ
+        gameObject.transform.position = gameObject.transform.position - new Vector3(0, 0, 10);
     }
 }
