@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChangePlayerHp : ItemBase
 {
     [SerializeField, Tooltip("増減する量")] int _value = 1;
-    //[SerializeField, Tooltip("吹き飛ぶアニメーションのモデル")] GameObject _gameObject = default;
+    [SerializeField, Tooltip("吹き飛ぶアニメーションのモデル")] GameObject _gameObject = default;
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,7 +37,11 @@ public class ChangePlayerHp : ItemBase
                 EffectController.Instance.EffectPlay(EffectController.EffectClass.Effect.Ring);
                 EffectController.Instance.SePlay(EffectController.SeClass.SE.Recovery);
             }
-            //if (_gameObject) Instantiate(_gameObject, transform.position, Quaternion.identity);
+            if (_gameObject)
+            {
+                Instantiate(_gameObject, transform.position, Quaternion.identity);
+                GM.Instance.AddKillCount(1);
+            }
             SetPosition();
         }
     }
