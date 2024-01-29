@@ -12,13 +12,17 @@ public class GM : MonoBehaviour
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static GM Instance = default;
     [SerializeField, Tooltip("制限時間")] float _limitTime = 15f;
     [SerializeField, Tooltip("制限時間の計測")] static float _limitTimer = 0.0f;
-    [Tooltip("現在のスコア")] static int _score = 0;
+    [Tooltip("現在のコイン数")] static int _coin = 0;
+    [Tooltip("(評価時に参照する)プレイヤーの残機")] static int _hp = 0;
     [Tooltip("敵のキル数")] static int _killCount = 0;
     [Tooltip("コンティニューの回数")] static int _continueCount = 0;
-    [SerializeField, Tooltip("スコアを表示するテキスト")] Text _scoreText = default;
+    [SerializeField, Tooltip("スコアを表示するテキスト")] Text _coinText = default;
     [SerializeField, Tooltip("制限時間を表示するテキスト")] Text _timeLimitText = default;
+    [SerializeField, Tooltip("マグネットの効果時間")] float _pullLimit = 10f;
+    [SerializeField, Tooltip("マグネット用の時間")] float _pullTimer = 0f;
+    [SerializeField] PlayerHp _playerHp = default;
     //[SerializeField, Tooltip("引き寄せ機能を有効にする範囲")] Collider _collider = default;
-    [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[3]; // ギミックの生成場所とタイミングが重ならないように
+    [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[5]; // ギミックの生成場所とタイミングが重ならないように
     [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[3];
     [SerializeField] UnityEvent _onStartEvent = default;
     [SerializeField] UnityEvent _inGameEvent = default;
@@ -32,8 +36,6 @@ public class GM : MonoBehaviour
     [Tooltip("ジャンプ台に接触したか")] bool _jumpingStand = false;
     [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] float _timer = 0f;
     [Tooltip("アイテムを引き寄せる")] bool _isPullItem = false;
-    [SerializeField, Tooltip("マグネットの効果時間")] float _pullLimit = 10f;
-    [SerializeField, Tooltip("マグネット用の時間")] float _pullTimer = 0f;
     //ScoreManager _scoreManager = default;
 
     #region"プロパティ"
@@ -41,7 +43,8 @@ public class GM : MonoBehaviour
     private ScoreManager _scoreManager;
     public ScoreManager ScoreManager => _scoreManager;
     //↑こうしておくと、GMを参照すればそのクラスを利用できる
-    public int Score { get => _score; set => _score = value; }
+    public int Coin { get => _coin; set => _coin = value; }
+    public int HP { get => _hp; set => _hp = value; }
     public int KillCount { get => _killCount; set => _killCount = value; }
     public int ContinueCount { get => _continueCount; set => _continueCount = value; }
     public bool JumpingStand { get => _jumpingStand; set => _jumpingStand = value; }
@@ -62,9 +65,10 @@ public class GM : MonoBehaviour
 
     void Start()
     {
-        Score = 0;
+        Coin = 0;
         KillCount = 0;
         ContinueCount = 0;
+        HP = 0;
         LimitTimer = _limitTime;
         _onStartEvent.Invoke();
         _isPause = false;
@@ -143,8 +147,8 @@ public class GM : MonoBehaviour
     /// </summary>
     public void ChangeScore(int value)
     {
-        Score += value;
-        _scoreText.text = Score.ToString("00000");
+        Coin += value;
+        _coinText.text = Coin.ToString("00000");
     }
 
     public void AddKillCount(int value)
@@ -164,6 +168,7 @@ public class GM : MonoBehaviour
 
     void Result()
     {
+        HP = _playerHp.NowHp;
         _isResult = true;
         _onResultEvent.Invoke();
         _scoreManager.Result();

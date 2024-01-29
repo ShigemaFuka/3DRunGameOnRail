@@ -22,9 +22,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField, Tooltip("左右移動")] bool _isTransform = default;
     [SerializeField, Tooltip("左右移動のスピード")] float _xSpeed = 7f;
     Rigidbody _rb = default;
-    //[Tooltip("速度を戻すまでの時間の経過")] float _timer = 0f;
-    //[SerializeField, Tooltip("走ったところの残像")] TrailRenderer _trailRenderer = default;
-    //[SerializeField, Header("正数で良い"), Tooltip("ｘ軸の移動範囲")] float _xRange = 2.0f;
+    Vector3 _initialPos = default;
 
     #region"プロパティ"
     public float DefaultSpeed { get => _defaultSpeed; }
@@ -42,6 +40,7 @@ public class MovePlayer : MonoBehaviour
 
     void Initialize()
     {
+        _initialPos = transform.position;
         _count = 0;
         Speed = _defaultSpeed;
         GM.Instance.Timer = 0;
@@ -77,7 +76,9 @@ public class MovePlayer : MonoBehaviour
         {
             GM.Instance.GameOver();
             var pos = transform.position;
-            pos.z -= 10f; // 少し手前に戻す
+            // 初期位置よりは奥に行くなら
+            if (_initialPos.z - 10f < pos.z - 10f)
+                pos.z -= 10f; // 少し手前に戻す
             // 位置を修正
             transform.position = new Vector3(pos.x, 0, pos.z);
         }

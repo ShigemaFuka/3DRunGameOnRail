@@ -14,7 +14,7 @@ public class ObjectPoolItem : MonoBehaviour
     //[SerializeField, Tooltip("空の親オブジェクト")] GameObject _parentObject = default;
 
     [SerializeField, Tooltip("スポーン場所の親オブジェクト")] GameObject _spawnsParent;
-    [SerializeField, Tooltip("スポーン場所")] GameObject[] _spawns = new GameObject[3];
+    [SerializeField, Tooltip("スポーン場所")] GameObject[] _spawns = new GameObject[5];
     [SerializeField] float _intervalMin = 0;
     [SerializeField] float _intervalMax = 0;
     [SerializeField] float _interval = 0;

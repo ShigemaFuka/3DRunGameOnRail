@@ -6,22 +6,22 @@ using UnityEngine;
 public class CallPull : MonoBehaviour
 {
     [SerializeField, Tooltip("‘¬“x")] float _speed = 5f;
-    void OnTriggerEnter(Collider other)
-    {
-        //if (GM.Instance.IsPullItem)
-        //{
-        //    var iPull = other.GetComponents<IPull>();
 
-        //    if (iPull != null)
-        //    {
-        //        foreach (var item in iPull)
-        //        {
-        //            Debug.Log(other.gameObject.name);
-        //            item.PullItem(_speed);
-        //        }
-        //    }
-        //}
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (GM.Instance.IsPullItem)
+    //    {
+    //        var iPull = other.GetComponents<IPull>();
+
+    //        if (iPull != null)
+    //        {
+    //            foreach (var item in iPull)
+    //            {
+    //                item.PullItem(_speed, false);
+    //            }
+    //        }
+    //    }
+    //}
     void OnTriggerStay(Collider other)
     {
         if (GM.Instance.IsPullItem)
@@ -32,9 +32,10 @@ public class CallPull : MonoBehaviour
             {
                 foreach (var item in iPull)
                 {
-                    item.PullItem(_speed);
+                    item.PullItem(_speed, false);
                 }
             }
+            // iPull = null;
         }
     }
 }

@@ -12,12 +12,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField, Tooltip("トータルテキスト")] Text _totalScoreText = default;
     [SerializeField, Tooltip("コインテキスト")] Text _coinText = default;
     [SerializeField, Tooltip("キル数テキスト")] Text _killText = default;
+    [SerializeField, Tooltip("残機テキスト")] Text _hpText = default;
     [SerializeField, Tooltip("コンティニューの回数テキスト")] Text _continueText = default;
     [SerializeField, Tooltip("ランクテキスト")] Text _rankText = default;
 
     [SerializeField, Tooltip("トータルスコア")] float _totalScore = 0;
     [SerializeField, Tooltip("コイン")] int _coin = 0;
     [SerializeField, Tooltip("キル数")] int _kill = 0;
+    [SerializeField, Tooltip("残機")] int _hp = 0;
     [SerializeField, Tooltip("コンティニューの回数")] float _continue = 0;
 
     void Start()
@@ -25,6 +27,7 @@ public class ScoreManager : MonoBehaviour
         _totalScore = 0;
         _coin = 0;
         _kill = 0;
+        _hp = 0;
         _continue = 0;
     }
 
@@ -35,14 +38,16 @@ public class ScoreManager : MonoBehaviour
 
     public void Result()
     {
-        _coin = GM.Instance.Score;
+        _coin = GM.Instance.Coin;
         _kill = GM.Instance.KillCount * 100;
+        _hp = GM.Instance.HP * 300;
         _continue = (_coin + _kill) * 0.2f * GM.Instance.ContinueCount;
-        _totalScore = _coin + _kill - _continue;
-        Debug.Log($"_totalScore = _coin + _kill - _continue : {_totalScore} = {_coin} + {_kill} - {_continue}");
+        _totalScore = _coin + _kill + _hp - _continue;
+        Debug.Log($"_totalScore = _coin + _kill - _continue : {_totalScore} = {_coin} + {_kill} + {_hp} - {_continue}");
 
-        _coinText.text = GM.Instance.Score.ToString("00000");
+        _coinText.text = GM.Instance.Coin.ToString("00000");
         _killText.text = GM.Instance.KillCount.ToString("00");
+        _hpText.text = GM.Instance.HP.ToString("00");
         _continueText.text = GM.Instance.ContinueCount.ToString("00");
         _totalScoreText.text = _totalScore.ToString("00000");
         _rankText.text = Rank(_totalScore);
@@ -51,15 +56,15 @@ public class ScoreManager : MonoBehaviour
     string Rank(float value)
     {
         string rank;
-        if (value >= 2000)
+        if (value >= 8000)
             rank = "S";
-        else if (value >= 1500)
+        else if (value >= 4000)
             rank = "A";
-        else if (value >= 1000)
+        else if (value >= 2000)
             rank = "B";
-        else if (value >= 500)
+        else if (value >= 1000)
             rank = "C";
-        else if (value >= 100)
+        else if (value >= 500)
             rank = "D";
         else
             rank = "E";
