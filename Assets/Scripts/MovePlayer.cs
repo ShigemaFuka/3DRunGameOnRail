@@ -67,12 +67,13 @@ public class MovePlayer : MonoBehaviour
         else
             gameObject.tag = "Player";
 
-        if (GM.Instance._isPause)
+        //if (GM.Instance._isPause)
+        if (GM.Instance.NowState == GM.GameState.Pause)
             _rb.isKinematic = true;
         else _rb.isKinematic = false;
 
         //落下死
-        if (transform.position.y <= -3)
+        if (transform.position.y <= -4)
         {
             GM.Instance.GameOver();
             var pos = transform.position;
@@ -84,7 +85,11 @@ public class MovePlayer : MonoBehaviour
         }
 
         //ポーズ中は行動停止
-        _isMove = !GM.Instance._isPause;
+        //_isMove = !GM.Instance._isPause;
+        if (GM.Instance.NowState == GM.GameState.InGame)
+            _isMove = true;
+        else
+            _isMove = false;
         if (_isMove)
         {
             if (_isTransform) Move2();

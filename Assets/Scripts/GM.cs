@@ -9,7 +9,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GM : MonoBehaviour
 {
+    #region
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static GM Instance = default;
+    [SerializeField, Tooltip("現在のステート")] GameState _nowState = GameState.InGame;
+    [SerializeField, Tooltip("前のステート")] GameState _oldState = GameState.Start;
     [SerializeField, Tooltip("制限時間")] float _limitTime = 15f;
     [SerializeField, Tooltip("制限時間の計測")] static float _limitTimer = 0.0f;
     [Tooltip("現在のコイン数")] static int _coin = 0;
@@ -23,20 +26,22 @@ public class GM : MonoBehaviour
     [SerializeField] PlayerHp _playerHp = default;
     //[SerializeField, Tooltip("引き寄せ機能を有効にする範囲")] Collider _collider = default;
     [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[5]; // ギミックの生成場所とタイミングが重ならないように
-    [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[3];
+    [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[5];
     [SerializeField] UnityEvent _onStartEvent = default;
     [SerializeField] UnityEvent _inGameEvent = default;
     [SerializeField] UnityEvent _onGameOverEvent = default;
     [SerializeField] UnityEvent _onResultEvent = default;
-    public bool _inGame = false;
-    bool _isResult = false;
-    [Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
-    bool _inGameOver = false;
+    //public bool _inGame = false;
+    //[SerializeField] bool _isResult = false;
+    //[Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
+    //bool _inGameOver = false;
     [Tooltip("プレイヤーの無敵化")] public bool _isInvincible = false;
     [Tooltip("ジャンプ台に接触したか")] bool _jumpingStand = false;
     [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] float _timer = 0f;
     [Tooltip("アイテムを引き寄せる")] bool _isPullItem = false;
+    //[SerializeField, Tooltip("前フレームのステート")] GameState _oldState = GameState.InGame;
     //ScoreManager _scoreManager = default;
+    #endregion
 
     #region"プロパティ"
     //↑プロパティをまとめておいて、開閉することでコード全体を見やすくする
@@ -51,6 +56,9 @@ public class GM : MonoBehaviour
     public float Timer { get => _timer; set => _timer = value; }
     public float LimitTimer { get => _limitTimer; set => _limitTimer = value; }
     public bool IsPullItem { get => _isPullItem; set => _isPullItem = value; }
+    public GameState NowState { get => _nowState; set => _nowState = value; }
+    public GameState OldState { get => _oldState; set => _oldState = value; }
+
     #endregion
 
     void Awake()
@@ -63,16 +71,32 @@ public class GM : MonoBehaviour
         }
     }
 
+    /// <summary> ゲームの状態を管理する列挙型 </summary>
+    public enum GameState
+    {
+        Start,
+        InGame,
+        Pause,
+        GameOver,
+        Result,
+    }
+
     void Start()
     {
+        _onStartEvent.Invoke();
+        Initialize();
+    }
+
+    void Initialize()
+    {
+        NowState = GameState.Start;
         Coin = 0;
         KillCount = 0;
         ContinueCount = 0;
         HP = 0;
         LimitTimer = _limitTime;
-        _onStartEvent.Invoke();
-        _isPause = false;
-        _isResult = false;
+        //_isPause = false;
+        //_isResult = false;
         JumpingStand = false;
         _pullTimer = 0f;
         _scoreManager = FindObjectOfType<ScoreManager>();
@@ -85,47 +109,66 @@ public class GM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Result();
-            //IsPullItem = true;
-            //Debug.Log(IsPullItem);
         }
 
         // 制限時間を超えたら
         if (LimitTimer <= 0)
         {
-            Result();
+            //if (!_isResult) 
+            if (NowState != GameState.Result)
+                Result();
         }
 
         //スタート・リスタート
-        if (Input.GetKeyDown(KeyCode.Return) && !_inGame)
+        //if (Input.GetKeyDown(KeyCode.Return) && !_inGame)
+        if (Input.GetKeyDown(KeyCode.Return) && NowState != GameState.InGame && NowState != GameState.Pause)
         {
             _inGameEvent.Invoke();
             // 以下はリスタート時のBGM再生
-            if (_inGameOver)
+            //if (_inGameOver)
+            if (NowState == GameState.GameOver)
             {
                 EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
                 ContinueCount++;
             }
-            if (_isResult)
+            //if (_isResult)
+            if (NowState == GameState.Result)
             {
                 Reload();
             }
             LimitTimer = _limitTime;
-            _inGame = true;
+            //_inGame = true;
+            NowState = GameState.InGame;
         }
         //ポーズ画面
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _isPause = !_isPause;
+            //_isPause = !_isPause;
+
+            //NowState = (NowState == GameState.Pause) ? GameState.InGame : GameState.Pause;
+
+            if (NowState != GameState.Pause)
+            {
+                OldState = NowState;
+                NowState = GameState.Pause;
+            }
+            else
+                NowState = OldState; // ポーズする前のステートに戻すため
         }
 
-        if (_inGame && !_isPause)
+        //if (_inGame && !_isPause)
+        if (NowState == GameState.InGame) // inGameのときだけ計算
         {
             _timers[0] += Time.deltaTime;
             _timers[1] += Time.deltaTime;
             _timers[2] += Time.deltaTime;
+            _timers[3] += Time.deltaTime;
+            _timers[4] += Time.deltaTime;
             FlagChange(0);
             FlagChange(1);
             FlagChange(2);
+            FlagChange(3);
+            FlagChange(4);
             // 時限式 マグネット機能停止
             if (IsPullItem)
             {
@@ -138,7 +181,6 @@ public class GM : MonoBehaviour
             }
             LimitTimer -= Time.deltaTime;
         }
-
         _timeLimitText.text = LimitTimer.ToString("000");
     }
 
@@ -159,20 +201,23 @@ public class GM : MonoBehaviour
     public void GameOver()
     {
         _onGameOverEvent.Invoke();
-        _inGame = false;
-        _inGameOver = !_inGame;
+        //_inGame = false;
+        //_inGameOver = !_inGame;
+        NowState = GameState.GameOver;
         EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.GameOver);
         //_isInvincible = true;
-        Debug.Log("GameOver");
     }
 
     void Result()
     {
+        EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.Result);
         HP = _playerHp.NowHp;
-        _isResult = true;
         _onResultEvent.Invoke();
         _scoreManager.Result();
-        _inGame = false;
+        //_isResult = true;
+        //_inGame = false;
+        NowState = GameState.Result;
+        //Initialize();
     }
 
     /// <summary>

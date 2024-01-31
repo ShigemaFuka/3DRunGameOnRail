@@ -57,9 +57,15 @@ public class ScoreManager : MonoBehaviour
     {
         string rank;
         if (value >= 8000)
+        {
+            EffectController.Instance.SePlay(EffectController.SeClass.SE.Applause);
             rank = "S";
+        }
         else if (value >= 4000)
+        {
+            EffectController.Instance.SePlay(EffectController.SeClass.SE.Applause);
             rank = "A";
+        }
         else if (value >= 2000)
             rank = "B";
         else if (value >= 1000)

@@ -20,6 +20,12 @@ public class ShowUI : MonoBehaviour
         //}
         //else
         //    _target.SetActive(false);
-        _target.SetActive(GM.Instance._isPause);
+
+        //_target.SetActive(GM.Instance._isPause);
+
+        if (GM.Instance.NowState == GM.GameState.Pause)
+            _target.SetActive(true);
+        else
+            _target.SetActive(false);
     }
 }

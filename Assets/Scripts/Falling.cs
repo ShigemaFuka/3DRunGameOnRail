@@ -21,13 +21,14 @@ public class Falling : MonoBehaviour
 
     void OnEnable()
     {
-        if(_rb) Reset();
+        if (_rb) Reset();
     }
 
     void Update()
     {
         // yŽ²‚ÌˆÊ’u‚ðŒ³‚É–ß‚·
-        if (!GM.Instance._inGame)
+        //if (!GM.Instance._inGame)
+        if (GM.Instance.NowState != GM.GameState.InGame)
         {
             Reset();
         }

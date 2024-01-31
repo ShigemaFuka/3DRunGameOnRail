@@ -6,7 +6,7 @@ using UnityEngine;
 public class InvincibleEffect : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource = default;
-    [SerializeField,Tooltip("高くするピッチの値")] float _pitch = default;
+    [SerializeField, Tooltip("高くするピッチの値")] float _pitch = default;
     [Tooltip("元々のピッチの値")] float _defaultPitch = default;
     [SerializeField] Animator _animator = default;
     void Start()
@@ -17,7 +17,9 @@ public class InvincibleEffect : MonoBehaviour
 
     void Update()
     {
-        if (GM.Instance._isInvincible && GM.Instance._inGame && !GM.Instance._isPause)
+        // 無敵＆インゲーム
+        //if (GM.Instance._isInvincible && GM.Instance._inGame && !GM.Instance._isPause)
+        if (GM.Instance._isInvincible && GM.Instance.NowState == GM.GameState.InGame)
         {
             _audioSource.pitch = _pitch;
             _animator.SetBool("Invincible", true);

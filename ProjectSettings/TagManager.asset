@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Item
   - Fire
-  - Health
+  - SpawnSpeedUp
+  - SpawnEnemy
+  - SpawnEnemyWithSpeedUp
+  - SpawnHealth
+  - SpawnCoin
   - Gimmick
-  - SpawnGimmick
+  - Invincible
+  - SpawnMagnet
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Particle
   - 
   - 
   - 

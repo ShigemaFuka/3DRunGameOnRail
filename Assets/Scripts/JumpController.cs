@@ -24,7 +24,8 @@ public class JumpController : MonoBehaviour
     void Update()
     {
         //接地フラグが真かつ、ポーズ中でなければ
-        if (_isJump && !GM.Instance._isPause)
+        //if (_isJump && !GM.Instance._isPause)
+        if (_isJump && GM.Instance.NowState == GM.GameState.InGame)
         {
             if (Input.GetButtonDown("Jump"))
             {

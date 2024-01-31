@@ -103,7 +103,8 @@ public class EffectController : MonoBehaviour
             Recovery,
             SpeedUp,
             JumpingStand,
-            Jump
+            Jump,
+            Applause // äÖç—
         }
     }
 
@@ -123,7 +124,8 @@ public class EffectController : MonoBehaviour
         public enum BGM
         {
             InGame,
-            GameOver
+            GameOver,
+            Result
         }
     }
 }

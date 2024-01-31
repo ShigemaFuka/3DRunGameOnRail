@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childrenTransform: []
+  _childrenVector3: []
 --- !u!65 &1153680661668878215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -513,14 +514,6 @@ PrefabInstance:
     - target: {fileID: 5694120553420385337, guid: 44982659582d09d42ac467ad9e1ecd93, type: 3}
       propertyPath: m_Name
       value: Ground_Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 5694120553420385337, guid: 44982659582d09d42ac467ad9e1ecd93, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5694120553420385337, guid: 44982659582d09d42ac467ad9e1ecd93, type: 3}
-      propertyPath: m_TagString
-      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44982659582d09d42ac467ad9e1ecd93, type: 3}
