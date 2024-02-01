@@ -73,7 +73,7 @@ public class MovePlayer : MonoBehaviour
         else _rb.isKinematic = false;
 
         //—Ž‰ºŽ€
-        if (transform.position.y <= -4)
+        if (transform.position.y <= -3)
         {
             GM.Instance.GameOver();
             var pos = transform.position;

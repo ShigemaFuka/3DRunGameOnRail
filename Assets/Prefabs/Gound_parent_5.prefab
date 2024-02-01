@@ -239,8 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b291b28076c00140901879f731d01ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 9079314776203982575}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _addSpeed: 5
 --- !u!1 &2468634990716171883
@@ -329,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childrenTransform: []
+  _childrenVector3: []
 --- !u!65 &6947184596840520021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39379,8 +39378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b291b28076c00140901879f731d01ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 5167390958623690762}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _addSpeed: 5
 --- !u!1 &4369125386263970441

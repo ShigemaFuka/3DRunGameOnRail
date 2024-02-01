@@ -157,10 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 6125391370151325394}
-  _effect: {fileID: 9177726125383036550, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: 1
+  _gameObject: {fileID: 0}
 --- !u!114 &6207066834314138869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11444,10 +11443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 8536519647961664830}
-  _effect: {fileID: 9177726125383036550, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: 1
+  _gameObject: {fileID: 0}
 --- !u!114 &8454914552677414681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20456,10 +20454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 3156924496583086769}
-  _effect: {fileID: 9177726125383036550, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: 1
+  _gameObject: {fileID: 0}
 --- !u!114 &2949165630100318358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28075,6 +28072,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2928389119317105227, guid: 6cc99cc609688034485cab2c23df5501, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7676591753551404507, guid: 6cc99cc609688034485cab2c23df5501, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

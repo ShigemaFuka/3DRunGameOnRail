@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 7048869412920936327}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &7718200977780661198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,10 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 7693250158178660387}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &6921462830843587690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67117,10 +67115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1066613162034374808}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &289158926524757201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67291,10 +67288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 768651349349097522}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &28393597601021051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67631,10 +67627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1303730336175966862}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &1790695778233079495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67764,6 +67759,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2928389119317105227, guid: 6cc99cc609688034485cab2c23df5501, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7676591753551404507, guid: 6cc99cc609688034485cab2c23df5501, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

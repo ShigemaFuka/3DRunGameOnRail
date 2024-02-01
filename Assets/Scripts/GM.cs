@@ -24,6 +24,10 @@ public class GM : MonoBehaviour
     [SerializeField, Tooltip("マグネットの効果時間")] float _pullLimit = 10f;
     [SerializeField, Tooltip("マグネット用の時間")] float _pullTimer = 0f;
     [SerializeField] PlayerHp _playerHp = default;
+    [SerializeField, Tooltip("残り時間が少なくなった時にアニメーション再生")] Animator _limitTimerAnimator = default;
+    [SerializeField, Tooltip("UIのAnim")] Animator _hpUiAnimator = default;
+
+
     //[SerializeField, Tooltip("引き寄せ機能を有効にする範囲")] Collider _collider = default;
     [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[5]; // ギミックの生成場所とタイミングが重ならないように
     [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[5];
@@ -31,6 +35,7 @@ public class GM : MonoBehaviour
     [SerializeField] UnityEvent _inGameEvent = default;
     [SerializeField] UnityEvent _onGameOverEvent = default;
     [SerializeField] UnityEvent _onResultEvent = default;
+
     //public bool _inGame = false;
     //[SerializeField] bool _isResult = false;
     //[Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
@@ -181,7 +186,19 @@ public class GM : MonoBehaviour
             }
             LimitTimer -= Time.deltaTime;
         }
+
         _timeLimitText.text = LimitTimer.ToString("000");
+
+        // アニメーション再生 
+        if (LimitTimer <= 4)
+            _limitTimerAnimator.SetBool("Limit", true);
+        if (NowState != GameState.InGame)
+            _limitTimerAnimator.SetBool("Limit", false);
+
+        if (_playerHp.NowHp == 1)
+            _hpUiAnimator.SetBool("Hp0", true);
+        if (_playerHp.NowHp != 1 || NowState != GameState.InGame)
+            _hpUiAnimator.SetBool("Hp0", false);
     }
 
     /// <summary>

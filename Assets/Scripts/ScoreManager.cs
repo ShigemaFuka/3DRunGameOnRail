@@ -31,17 +31,17 @@ public class ScoreManager : MonoBehaviour
         _continue = 0;
     }
 
-    public void AddScore(int amount)
-    {
+    //public void AddScore(int amount)
+    //{
 
-    }
+    //}
 
     public void Result()
     {
         _coin = GM.Instance.Coin;
         _kill = GM.Instance.KillCount * 100;
         _hp = GM.Instance.HP * 300;
-        _continue = (_coin + _kill) * 0.2f * GM.Instance.ContinueCount;
+        _continue = (_coin + _kill + _hp) * 0.2f * GM.Instance.ContinueCount;
         _totalScore = _coin + _kill + _hp - _continue;
         Debug.Log($"_totalScore = _coin + _kill - _continue : {_totalScore} = {_coin} + {_kill} + {_hp} - {_continue}");
 

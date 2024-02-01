@@ -3679,6 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childrenTransform: []
+  _childrenVector3: []
 --- !u!65 &5411214192710306705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4316,10 +4317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 8312313532946179423}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &8761003868740483350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51147,10 +51147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 6535378357252226454}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &5799581315028214239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51992,8 +51991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
-  _effect: {fileID: 5573876837594559368, guid: f31a0343a52b98f43810d14740ea8fba, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: -1
   _gameObject: {fileID: 0}
@@ -52370,10 +52367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 3589210425452199210}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &4251816250843357539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54913,8 +54909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
-  _effect: {fileID: 5573876837594559368, guid: f31a0343a52b98f43810d14740ea8fba, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: -1
   _gameObject: {fileID: 0}
@@ -77730,10 +77724,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7d6d89af93b0c458df898e171bdc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1737076021399363385}
-  _effect: {fileID: 1702657300312902, guid: a28092f1173d7a3449fe0f2d4e4d8f19, type: 3}
   _collectGimmickObject: {fileID: 0}
   _score: 5
+  _isReach: 0
 --- !u!114 &1357068892944401264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77999,8 +77992,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb0e9c5a40fe44818a3d081ac7c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
-  _effect: {fileID: 5573876837594559368, guid: f31a0343a52b98f43810d14740ea8fba, type: 3}
   _collectGimmickObject: {fileID: 0}
   _value: -1
   _gameObject: {fileID: 0}

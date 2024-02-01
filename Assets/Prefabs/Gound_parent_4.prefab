@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _childrenTransform: []
+  _childrenVector3: []
 --- !u!65 &1352764703717934372
 BoxCollider:
   m_ObjectHideFlags: 0
