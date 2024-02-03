@@ -146,7 +146,7 @@ public class GM : MonoBehaviour
             NowState = GameState.InGame;
         }
         //É|Å[ÉYâÊñ 
-        else if (Input.GetKeyDown(KeyCode.Tab))
+        else if (Input.GetKeyDown(KeyCode.Tab) && NowState != GameState.Result)
         {
             //_isPause = !_isPause;
 

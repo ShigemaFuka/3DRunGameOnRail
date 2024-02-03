@@ -16,7 +16,7 @@ public class ChangeScore : ItemBase, IPull
             transform.position = Vector3.MoveTowards(transform.position, _playerObject.transform.position, speed);
 
             float distance = Vector3.Distance(_playerObject.transform.position, transform.position);
-            if (distance <= 1)
+            if (distance <= 2)
             {
                 _isReach = true;
                 return;

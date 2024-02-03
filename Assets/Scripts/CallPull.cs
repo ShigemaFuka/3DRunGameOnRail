@@ -35,7 +35,6 @@ public class CallPull : MonoBehaviour
                     item.PullItem(_speed, false);
                 }
             }
-            // iPull = null;
         }
     }
 }
