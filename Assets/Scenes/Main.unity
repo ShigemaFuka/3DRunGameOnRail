@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.41518545, g: 0.49138892, b: 0.6058883, a: 1}
+  m_IndirectSpecularColor: {r: 0.41219229, g: 0.48921353, b: 0.60330635, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -915,6 +915,10 @@ PrefabInstance:
     - target: {fileID: 9072195257274000810, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072195257274000810, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9172090627149471332, guid: f4f337b5a0051954ebca3311989e1d26, type: 3}
       propertyPath: m_LocalScale.x
@@ -7985,7 +7989,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 20
+        scalar: 2
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -13686,7 +13690,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 20
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
