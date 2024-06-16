@@ -9,48 +9,44 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GM : MonoBehaviour
 {
-    #region
+    #region "変数"
     [Tooltip("インスタンスを取得するためのパブリック変数")] public static GM Instance = default;
-    [SerializeField, Tooltip("現在のステート")] GameState _nowState = GameState.InGame;
-    [SerializeField, Tooltip("前のステート")] GameState _oldState = GameState.Start;
-    [SerializeField, Tooltip("制限時間")] float _limitTime = 15f;
-    [SerializeField, Tooltip("制限時間の計測")] static float _limitTimer = 0.0f;
-    [Tooltip("現在のコイン数")] static int _coin = 0;
-    [Tooltip("(評価時に参照する)プレイヤーの残機")] static int _hp = 0;
-    [Tooltip("敵のキル数")] static int _killCount = 0;
-    [Tooltip("コンティニューの回数")] static int _continueCount = 0;
-    [SerializeField, Tooltip("スコアを表示するテキスト")] Text _coinText = default;
-    [SerializeField, Tooltip("制限時間を表示するテキスト")] Text _timeLimitText = default;
-    [SerializeField, Tooltip("マグネットの効果時間")] float _pullLimit = 10f;
-    [SerializeField, Tooltip("マグネット用の時間")] float _pullTimer = 0f;
-    [SerializeField] PlayerHp _playerHp = default;
-    [SerializeField, Tooltip("残り時間が少なくなった時にアニメーション再生")] Animator _limitTimerAnimator = default;
-    [SerializeField, Tooltip("UIのAnim")] Animator _hpUiAnimator = default;
+    [SerializeField, Tooltip("現在のステート")] private GameState _nowState = GameState.InGame;
+    [SerializeField, Tooltip("前のステート")] private GameState _oldState = GameState.Start;
+    [SerializeField, Tooltip("制限時間")] private float _limitTime = 15f;
+    [SerializeField, Tooltip("制限時間の計測")] private static float _limitTimer = 0.0f;
+    [Tooltip("現在のコイン数")] private static int _coin = 0;
+    [Tooltip("(評価時に参照する)プレイヤーの残機")] private static int _hp = 0;
+    [Tooltip("敵のキル数")] private static int _killCount = 0;
+    [Tooltip("コンティニューの回数")] private static int _continueCount = 0;
+    [SerializeField, Tooltip("スコアを表示するテキスト")] private Text _coinText = default;
+    [SerializeField, Tooltip("制限時間を表示するテキスト")] private Text _timeLimitText = default;
+    [SerializeField, Tooltip("マグネットの効果時間")] private float _pullLimit = 10f;
+    [SerializeField, Tooltip("マグネット用の時間")] private float _pullTimer = 0f;
+    [SerializeField] private PlayerHp _playerHp = default;
+    [SerializeField, Tooltip("残り時間が少なくなった時にアニメーション再生")] private Animator _limitTimerAnimator = default;
+    [SerializeField, Tooltip("UIのAnim")] private Animator _hpUiAnimator = default;
 
 
-    //[SerializeField, Tooltip("引き寄せ機能を有効にする範囲")] Collider _collider = default;
     [Tooltip("生成直後のスポーンの場所")] public bool[] _isSpawn = new bool[5]; // ギミックの生成場所とタイミングが重ならないように
     [Tooltip("フラグを偽にするまでの時間計測")] private float[] _timers = new float[5];
-    [SerializeField] UnityEvent _onStartEvent = default;
-    [SerializeField] UnityEvent _inGameEvent = default;
-    [SerializeField] UnityEvent _onGameOverEvent = default;
-    [SerializeField] UnityEvent _onResultEvent = default;
+    [SerializeField] private UnityEvent _onStartEvent = default;
+    [SerializeField] private UnityEvent _inGameEvent = default;
+    [SerializeField] private UnityEvent _onGameOverEvent = default;
+    [SerializeField] private UnityEvent _onResultEvent = default;
 
-    //public bool _inGame = false;
-    //[SerializeField] bool _isResult = false;
-    //[Tooltip("ポーズ画面のUIを表示するか")] public bool _isPause = false;
-    //bool _inGameOver = false;
     [Tooltip("プレイヤーの無敵化")] public bool _isInvincible = false;
-    [Tooltip("ジャンプ台に接触したか")] bool _jumpingStand = false;
-    [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] float _timer = 0f;
-    [Tooltip("アイテムを引き寄せる")] bool _isPullItem = false;
-    //[SerializeField, Tooltip("前フレームのステート")] GameState _oldState = GameState.InGame;
-    //ScoreManager _scoreManager = default;
+    [Tooltip("ジャンプ台に接触したか")] private bool _jumpingStand = false;
+    [Tooltip("プレイヤーの速度を戻すまでの時間の経過")] private float _timer = 0f;
+    [Tooltip("アイテムを引き寄せる")] private bool _isPullItem = false;
     #endregion
 
     #region"プロパティ"
     //↑プロパティをまとめておいて、開閉することでコード全体を見やすくする
     private ScoreManager _scoreManager;
+    private static readonly int Limit = Animator.StringToHash("Limit");
+    private static readonly int Hp0 = Animator.StringToHash("Hp0");
+
     public ScoreManager ScoreManager => _scoreManager;
     //↑こうしておくと、GMを参照すればそのクラスを利用できる
     public int Coin { get => _coin; set => _coin = value; }
@@ -66,7 +62,7 @@ public class GM : MonoBehaviour
 
     #endregion
 
-    void Awake()
+    private void Awake()
     {
         // この処理は Start() に書いてもよいが、Awake() に書くことが多い。
         // 参考: イベント関数の実行順序 https://docs.unity3d.com/ja/2019.4/Manual/ExecutionOrder.html
@@ -86,13 +82,13 @@ public class GM : MonoBehaviour
         Result,
     }
 
-    void Start()
+    private void Start()
     {
         _onStartEvent.Invoke();
         Initialize();
     }
 
-    void Initialize()
+    private void Initialize()
     {
         NowState = GameState.Start;
         Coin = 0;
@@ -100,15 +96,13 @@ public class GM : MonoBehaviour
         ContinueCount = 0;
         HP = 0;
         LimitTimer = _limitTime;
-        //_isPause = false;
-        //_isResult = false;
         JumpingStand = false;
         _pullTimer = 0f;
         _scoreManager = FindObjectOfType<ScoreManager>();
         EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
     }
 
-    void Update()
+    private void Update()
     {
         // テスト用
         if (Input.GetKeyDown(KeyCode.K))
@@ -119,39 +113,30 @@ public class GM : MonoBehaviour
         // 制限時間を超えたら
         if (LimitTimer <= 0)
         {
-            //if (!_isResult) 
             if (NowState != GameState.Result)
                 Result();
         }
 
         //スタート・リスタート
-        //if (Input.GetKeyDown(KeyCode.Return) && !_inGame)
         if (Input.GetKeyDown(KeyCode.Return) && NowState != GameState.InGame && NowState != GameState.Pause)
         {
             _inGameEvent.Invoke();
             // 以下はリスタート時のBGM再生
-            //if (_inGameOver)
             if (NowState == GameState.GameOver)
             {
                 EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.InGame);
                 ContinueCount++;
             }
-            //if (_isResult)
             if (NowState == GameState.Result)
             {
                 Reload();
             }
             LimitTimer = _limitTime;
-            //_inGame = true;
             NowState = GameState.InGame;
         }
         //ポーズ画面
         else if (Input.GetKeyDown(KeyCode.Tab) && NowState != GameState.Result)
         {
-            //_isPause = !_isPause;
-
-            //NowState = (NowState == GameState.Pause) ? GameState.InGame : GameState.Pause;
-
             if (NowState != GameState.Pause)
             {
                 OldState = NowState;
@@ -161,7 +146,6 @@ public class GM : MonoBehaviour
                 NowState = OldState; // ポーズする前のステートに戻すため
         }
 
-        //if (_inGame && !_isPause)
         if (NowState == GameState.InGame) // inGameのときだけ計算
         {
             _timers[0] += Time.deltaTime;
@@ -191,14 +175,14 @@ public class GM : MonoBehaviour
 
         // アニメーション再生 
         if (LimitTimer <= 4)
-            _limitTimerAnimator.SetBool("Limit", true);
+            _limitTimerAnimator.SetBool(Limit, true);
         if (NowState != GameState.InGame)
-            _limitTimerAnimator.SetBool("Limit", false);
+            _limitTimerAnimator.SetBool(Limit, false);
 
         if (_playerHp.NowHp == 1)
-            _hpUiAnimator.SetBool("Hp0", true);
+            _hpUiAnimator.SetBool(Hp0, true);
         if (_playerHp.NowHp != 1 || NowState != GameState.InGame)
-            _hpUiAnimator.SetBool("Hp0", false);
+            _hpUiAnimator.SetBool(Hp0, false);
     }
 
     /// <summary>
@@ -218,39 +202,29 @@ public class GM : MonoBehaviour
     public void GameOver()
     {
         _onGameOverEvent.Invoke();
-        //_inGame = false;
-        //_inGameOver = !_inGame;
         NowState = GameState.GameOver;
         EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.GameOver);
-        //_isInvincible = true;
     }
 
-    void Result()
+    private void Result()
     {
         EffectController.Instance.BgmPlay(EffectController.BgmClass.BGM.Result);
         HP = _playerHp.NowHp;
         _onResultEvent.Invoke();
         _scoreManager.Result();
-        //_isResult = true;
-        //_inGame = false;
         NowState = GameState.Result;
-        //Initialize();
     }
 
     /// <summary>
     /// Trueになってから、一定時間たったらFalseにする
     /// </summary>
     /// <param name="boolIndex"></param>
-    void FlagChange(int boolIndex)
+    private void FlagChange(int boolIndex)
     {
-        if (_isSpawn[boolIndex])
-        {
-            if (_timers[boolIndex] >= 0.2f)
-            {
-                _isSpawn[boolIndex] = false;
-                _timers[boolIndex] = 0;
-            }
-        }
+        if (!_isSpawn[boolIndex]) return;
+        if (!(_timers[boolIndex] >= 0.2f)) return;
+        _isSpawn[boolIndex] = false;
+        _timers[boolIndex] = 0;
     }
 
     public void Reload()
