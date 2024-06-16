@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 地面を無限生成しているように見せかける
@@ -71,7 +72,6 @@ public class ObjectPoolGround : MonoBehaviour
         _pos.z = _setZLength; //z.positonを０はじめにする
         go.transform.position = _pos;
         _setZLength += _addZLength;
-
         //呼び出し元に渡す
         return go;
     }

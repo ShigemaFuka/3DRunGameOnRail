@@ -11,7 +11,7 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField, Tooltip("前方と左右の移動制御")] bool _isMove = default;
     [SerializeField, Tooltip("デフォルトのスピード")] float _defaultSpeed = 0f;
-    [Tooltip("現在のスピード")] /*static*/ float _speed = 0f;
+    [Tooltip("現在のスピード")] float _speed = 0f;
     [SerializeField, Tooltip("プラマイでX軸方向への移動範囲")] float _xRange = 3f;
     [Tooltip("位置変更を適応させる")] Vector3 _changedPos = default;
     int _count = 0;
