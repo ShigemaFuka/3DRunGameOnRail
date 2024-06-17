@@ -10,11 +10,16 @@ public class PredictedDropOffPoint : MonoBehaviour
     private GameObject _markerInstance = default;
     private Vector3 _fallPoint = default;
     private MovePlayer _movePlayer = default;
+    private float _initialSpeed = default;
+    private Vector3 _initialVelocity = default;
+    private Vector3 _initialPosition = default;
+    private Rigidbody _rigidbody = default;
 
     private void Start()
     {
+        _rigidbody = _fallingObject.GetComponent<Rigidbody>();
+        _fallPoint = new Vector3(0, 0, -1000); // 見えないところへ配置
         _markerInstance = Instantiate(_markerPrefab, _fallPoint, Quaternion.identity);
-        _markerInstance.transform.position = new Vector3(0, 0, -1000); // 見えないところへ配置
     }
 
     private void Update()
@@ -22,6 +27,11 @@ public class PredictedDropOffPoint : MonoBehaviour
         // プレイヤーの左右移動に合わせてマーカーを移動
         var pos = _fallingObject.transform.position;
         _markerInstance.transform.position = new Vector3(pos.x, _fallPoint.y, _fallPoint.z);
+        
+        if(!_movePlayer) return;
+        var speed = _movePlayer.Speed;
+        if (speed < _initialSpeed) // 着地前に速度変化したとき
+            SetJumpStartPoint(_rigidbody); 
     }
 
     /// <summary>
@@ -31,10 +41,11 @@ public class PredictedDropOffPoint : MonoBehaviour
     public void SetJumpStartPoint(Rigidbody rb)
     {
         if (!_movePlayer) _movePlayer = FindObjectOfType<MovePlayer>();
-        Vector3 initialVelocity = rb.velocity + new Vector3(0, 0, _movePlayer.Speed);
-        Vector3 initialPosition = _fallingObject.transform.position;
+        _initialSpeed = _movePlayer.Speed;
+        _initialVelocity = rb.velocity + new Vector3(0, 0, _initialSpeed);
+        _initialPosition = _fallingObject.transform.position;
         Vector3 gravity = Physics.gravity;
-        _fallPoint = CalculateFallPoint(initialPosition, initialVelocity, gravity);
+        _fallPoint = CalculateFallPoint(_initialPosition, _initialVelocity, gravity);
         _markerInstance.transform.position = _fallPoint;
     }
 

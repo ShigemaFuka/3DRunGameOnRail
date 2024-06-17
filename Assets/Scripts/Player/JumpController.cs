@@ -10,18 +10,19 @@
 /// </summary>
 public class JumpController : MonoBehaviour
 {
-    Rigidbody _rb = default;
-    [SerializeField, Tooltip("ジャンプ時の計算で使う")] float _jumpPower = 5;
-    [SerializeField, Tooltip("ジャンプできるかの接地判定")] bool _isJump = false;
-    [Tooltip("アニメーター")] Animator _animator = null;
+    [SerializeField, Tooltip("ジャンプ時の計算で使う")] private float _jumpPower = 5;
+    [SerializeField, Tooltip("ジャンプできるかの接地判定")] private bool _isJump = false;
+    private Rigidbody _rb = default;
+    private Animator _animator = null;
+    private static readonly int JumpTri = Animator.StringToHash("JumpTri");
 
-    void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         //接地フラグが真かつ、ポーズ中でなければ
         //if (_isJump && !GM.Instance._isPause)
@@ -30,12 +31,12 @@ public class JumpController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 EffectController.Instance.SePlay(EffectController.SeClass.SE.Jump);
-                _animator.SetTrigger("JumpTri");
+                _animator.SetTrigger(JumpTri);
                 Vector3 velocity = _rb.velocity;
                 velocity.y = _jumpPower;
                 _rb.velocity = velocity;
 
-                //_rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
+                // _rb.AddForce(Vector3.up * _jumpPower, ForceMode.Impulse);
                 _isJump = false;
             }
         }
