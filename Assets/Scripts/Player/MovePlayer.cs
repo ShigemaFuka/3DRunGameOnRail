@@ -70,6 +70,7 @@ public class MovePlayer : MonoBehaviour
         if (transform.position.y <= -3)
         {
             GM.Instance.GameOver();
+            _rb.velocity = Vector3.zero; // 左右の慣性を消す
             var pos = transform.position;
             // 初期位置よりは奥に行くなら
             if (_initialPos.z - 10f < pos.z - 10f)
